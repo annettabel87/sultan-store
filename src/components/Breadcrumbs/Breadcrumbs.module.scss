@@ -1,9 +1,15 @@
 @import "../../variables.scss";
 
+.breadcrumbs {
+    text-align: left;
+    margin-bottom: 50px;
+}
+
 .crumb {
     padding: 10px;
     font-weight: 300;
 }
+
 .line {
     border: 1px dashed $mainText;
 }
