@@ -1,11 +1,16 @@
 import { FC } from "react";
-import { Header } from "../components/Header/Header";
+import style from "Catalog.module.scss";
+import Breadcrumbs from "../components/Breadcrumbs/Breadcrumbs";
+
 
 export const CatalogPage: FC = () => {
   return (
     <div>
-     
-      catalog
+      
+      <h1>catalog
+
+      </h1>
+      
     </div>
   );
 };

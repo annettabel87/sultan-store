@@ -7,11 +7,13 @@ import { Header } from "./components/Header/Header";
 import { BasketPage } from "./pages/BasketPage";
 import { CardPage } from "./pages/CardPage";
 import { CatalogPage } from "./pages/CatalogPage";
+import Breadcrumbs from "./components/Breadcrumbs/Breadcrumbs";
 
 function App() {
   return (
     <div className="App">
        <Header />
+       <Breadcrumbs/>
       <Suspense fallback={<Preloader />}>
         <Routes>
           <Route path={ROUTE.CATALOG} element={<CatalogPage />} />

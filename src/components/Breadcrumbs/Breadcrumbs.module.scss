@@ -1,0 +1,9 @@
+@import "../../variables.scss";
+
+.crumb {
+    padding: 10px;
+    font-weight: 300;
+}
+.line {
+    border: 1px dashed $mainText;
+}
