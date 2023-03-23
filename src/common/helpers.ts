@@ -3,4 +3,5 @@ export enum ROUTE {
     CARD = '/card/:cardId',
     BASKET = '/basket/',    
     ALL = '*',  
-  }
+}
+

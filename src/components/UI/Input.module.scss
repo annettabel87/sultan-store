@@ -1,0 +1,39 @@
+@import '../../variables.scss';
+
+.inputBlock {
+	height: 59px;
+	padding: 10px 10px 10px 20px;
+	box-sizing: border-box;
+	background: #EDEDED;
+	border-radius: 36px;
+	display: flex;
+	justify-content: space-between;
+
+	.input {
+		border: none;
+		width: 100%;
+		background: $inputBg;
+		border-radius: 36px;
+		padding: 20px 2px;
+		outline: none;
+		color: #5C6370;
+
+		&::placeholder {
+			font-size: 12px;
+		}
+
+		&:focus {
+			font-size: 21px;
+		}
+	}
+
+	.btn {
+		border: none;
+		border-radius: 50%;
+		background-color: $secondaryColor;
+		padding: 10px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+}
