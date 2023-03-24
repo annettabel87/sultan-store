@@ -14,12 +14,12 @@ export default function Breadcrumbs() {
       
 
       return (
-        <>
-          <span className={style.crumb} key={crumb}>
+        <span key={crumb}>
+          <span className={style.crumb} >
             <NavLink to={currentLink}>{crumb}</NavLink>
           </span>
           <span className={style.line}></span>
-        </>
+        </span>
       );
     });
 
