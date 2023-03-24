@@ -1,5 +1,11 @@
 @import "../variables.scss";
 
+.head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .catalogTitle {
     text-align: left;
     font-size: $titleFontSize;

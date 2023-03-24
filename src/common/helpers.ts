@@ -64,3 +64,30 @@ export const FILTERS = [
         title: 'Бумажная продукция'
     },
 ]
+
+export enum SORTNAMES {
+    PRICE = 'price',
+    PRICE_REVERSE = 'price_reverse',
+    TITLE = 'title',    
+    TITLE_REVERSE = 'title_reverse',     
+}
+
+export const SORTSVALUES = [
+    {
+        name: SORTNAMES.TITLE,
+        title: 'Название А-Я'
+    },
+    {
+        name: SORTNAMES.TITLE_REVERSE,
+        title: 'Название Я-А'
+    },
+    {
+        name: SORTNAMES.PRICE,
+        title: 'Цена min'
+    },
+    {
+        name: SORTNAMES.PRICE_REVERSE,
+        title: 'Цена max'
+    },
+   
+]
