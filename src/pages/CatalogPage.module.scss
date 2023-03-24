@@ -1,0 +1,12 @@
+@import "../variables.scss";
+
+.catalogTitle {
+    text-align: left;
+    font-size: $titleFontSize;
+    font-weight: 600;
+    line-height: 1.2;
+    text-transform: uppercase;
+    color: $boldText;
+    letter-spacing: 1px;
+    margin-bottom: 25px;
+}

@@ -1,16 +1,13 @@
 import { FC } from "react";
-import style from "Catalog.module.scss";
-import Breadcrumbs from "../components/Breadcrumbs/Breadcrumbs";
+import style from "./CatalogPage.module.scss";
+import { FilterButtonsBlock } from "../components/FilterButtonsBlock/FilterButtonsBlock";
 
 
 export const CatalogPage: FC = () => {
   return (
-    <div>
-      
-      <h1>catalog
-
-      </h1>
-      
+    <div className={style.catalogPage}>      
+      <h1 className={style.catalogTitle}>Косметика и гигиена</h1>
+      <FilterButtonsBlock/>
     </div>
   );
 };
