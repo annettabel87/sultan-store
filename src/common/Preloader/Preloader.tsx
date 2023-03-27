@@ -1,5 +1,5 @@
-import React, { FC } from 'react';
-import s from './Preloader.module.scss';
+import React, { FC } from "react";
+import s from "./Preloader.module.scss";
 
 const Preloader: FC = () => {
   return (

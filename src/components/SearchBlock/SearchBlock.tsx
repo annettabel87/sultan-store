@@ -27,7 +27,6 @@ export const SearchBlock: FC<ISearchBlockProps> = ({ manufacturers }) => {
     } else {
       dispatch(REMOVE_FILTERED_MANUFACTURER(name.toLocaleLowerCase()))
     }
-    
   }
   return (
     <div className={style.block}>

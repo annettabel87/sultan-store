@@ -18,7 +18,7 @@ interface ICatalogState {
   filter: FILTERSNAME | "";
   sortValue: SORTNAMES | "";
   minPrice: number;
-  maxPrice: number;  
+  maxPrice: number;
   products: IProduct[];
   allManufactures: string[];
   isLoading: boolean;
@@ -34,7 +34,7 @@ export const initialState: ICatalogState = {
   filter: "",
   sortValue: "",
   minPrice: 0,
-  maxPrice: 0,  
+  maxPrice: 0,
   products: [],
   allManufactures: [],
   isLoading: false,
@@ -56,8 +56,7 @@ export const catalogSlice = createSlice({
     SET_PRODUCTS(state, action: PayloadAction<IProduct[]>) {
       state.isLoading = false;
       state.error = "";
-      state.products = action.payload;      
-     
+      state.products = action.payload;
     },
     PRODUCTS_FETCHING_ERROR(state, action: PayloadAction<string>) {
       state.isLoading = false;
@@ -77,7 +76,7 @@ export const catalogSlice = createSlice({
     SET_MINPRICE(state, action: PayloadAction<number>) {
       action.payload >= state.minmax_price_data.min ?
       state.minPrice = action.payload : state.minPrice = state.minmax_price_data.min
-    },    
+    },
     SET_ALL_MANUFACTURER(state, action: PayloadAction<string[]>) {
       state.allManufactures = action.payload;
     },
@@ -93,6 +92,11 @@ export const catalogSlice = createSlice({
     }>) {
       state.minmax_price_data = action.payload;
     },
+    CLEAR_FILTERS(state) {
+      state.filteredManufactures = state.allManufactures;
+      state.minPrice = state.minmax_price_data.min;
+      state.maxPrice = state.minmax_price_data.max;
+    },
   },
   extraReducers: {},
 });
@@ -105,6 +109,7 @@ export const {
   SET_ALL_MANUFACTURER,
   SET_PRODUCTS,
   ADD_FILTERED_MANUFACTURER,
-  REMOVE_FILTERED_MANUFACTURER
+  REMOVE_FILTERED_MANUFACTURER,
+  CLEAR_FILTERS
 } = catalogSlice.actions;
 export default catalogSlice.reducer;

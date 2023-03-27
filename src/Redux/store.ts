@@ -1,14 +1,14 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import catalogReducer from './catalogReducer';
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import catalogReducer from "./catalogReducer";
 
 export const rootReducer = combineReducers({
-    catalogReducer,    
+    catalogReducer,
   });
 
   const store = configureStore({
     reducer: rootReducer,
   })
-  
+
   export default store;
 
 
