@@ -20,7 +20,7 @@ export const SortBlock: FC = () => {
         onChange={(e) => dispatch(SET_SORTVALUE(e.target.value as SORTNAMES))}
       >
         {SORTSVALUES.map((sortName) => {
-          return <option value={sortName.name}>{sortName.title}</option>;
+          return <option key={sortName.name} value={sortName.name}>{sortName.title}</option>;
         })}
       </select>
     </form>
