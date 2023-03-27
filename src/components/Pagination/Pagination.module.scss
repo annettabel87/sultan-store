@@ -2,21 +2,40 @@
 .pagination {
     display: flex;
     align-items: center;
-    gap: 10px;
+    justify-content: center;
+    gap: 35px;
+    margin-bottom: 68px;
 }
 
 .paginationItems {
     display: flex;
-    gap: 10px;
+    gap: 21px;
     align-items: center;
 }
 
 .paginationItem  {
     cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+
+    &:hover {
+        transform: scale(1.2);
+    }
 }
 
 .paginationItem.active {
     border-radius: 50%;
-    background-color: $secondaryColor;
-    padding: 5px 11px;
+    background: linear-gradient(90deg, rgba(255, 198, 80, 0.3) 0%, rgba(254, 202, 110, 0.3) 97.25%);
+    padding: 9px 15px;
 }
+
+.paginationBtn {
+    border: none;
+    background-color: inherit;
+    transition: all 0.2s ease;
+
+    &:hover {
+        transform: scale(1.2);
+    }
+}
+

@@ -32,11 +32,11 @@ export const Pagination: FC<IPaginationProps> = ({ currentPage, countPerPage, to
 	})
 	return (
 		<div className={style.pagination}>
-			<button className={style.paginationLeft} onClick={setPrevPageHandler}><img src={prev} alt="prev" /></button>
+			<button className={style.paginationBtn} onClick={setPrevPageHandler}><img src={prev} alt="prev" /></button>
 			<div className={style.paginationItems}>
 				{mappedPages}
 			</div>
-			<button className={style.paginationRight} onClick={SetNextPageHandler}><img src={next} alt="next" /></button>
+			<button className={style.paginationBtn} onClick={SetNextPageHandler}><img src={next} alt="next" /></button>
 		</div>
 	)
 }

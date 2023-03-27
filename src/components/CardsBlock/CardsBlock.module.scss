@@ -1,5 +1,18 @@
 
 
-.block{
-    flex: 3;
+.cardBlock {
+    padding-top: 30px;
+    padding-bottom: 211px;
+}
+
+.block {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 21px;
+    margin-bottom: 56px;
+}
+
+.text {
+    text-align: left;
+    line-height: 1.5;
 }
