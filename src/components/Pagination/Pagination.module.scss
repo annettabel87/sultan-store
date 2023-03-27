@@ -1,0 +1,22 @@
+@import  '../../variables.scss';
+.pagination {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.paginationItems {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.paginationItem  {
+    cursor: pointer;
+}
+
+.paginationItem.active {
+    border-radius: 50%;
+    background-color: $secondaryColor;
+    padding: 5px 11px;
+}

@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { filterData, FILTERSNAME, SORTNAMES } from "../common/helpers";
+import { FILTERSNAME, SORTNAMES } from "../common/helpers";
 
 export interface IProduct {
   id: number;
@@ -12,10 +12,10 @@ export interface IProduct {
   brand: string;
   description: string;
   price: number;
-  groups: FILTERSNAME[];  
+  groups: FILTERSNAME[];
 }
 interface ICatalogState {
-  filter: FILTERSNAME | "";
+  filterByGroup: FILTERSNAME | "";
   sortValue: SORTNAMES | "";
   minPrice: number;
   maxPrice: number;
@@ -25,13 +25,16 @@ interface ICatalogState {
   error: string;
   minmax_price_data: {
     min: number,
-    max:number
+    max: number
   }
-  filteredManufactures: string[]
+  filteredManufactures: string[],
+  currentPage: number,
+  totalCount: number,
+  countPerPage: number
 }
 
 export const initialState: ICatalogState = {
-  filter: "",
+  filterByGroup: "",
   sortValue: "",
   minPrice: 0,
   maxPrice: 0,
@@ -43,7 +46,10 @@ export const initialState: ICatalogState = {
     min: 0,
     max: 0
   },
-  filteredManufactures: []
+  filteredManufactures: [],
+  currentPage: 1,
+  totalCount: 1,
+  countPerPage: 15,
 };
 
 export const catalogSlice = createSlice({
@@ -64,18 +70,18 @@ export const catalogSlice = createSlice({
       state.products = [];
     },
     SET_FILTER(state, action: PayloadAction<FILTERSNAME | "">) {
-      state.filter = action.payload;
+      state.filterByGroup = action.payload;
     },
     SET_SORTVALUE(state, action: PayloadAction<SORTNAMES | "">) {
       state.sortValue = action.payload;
     },
     SET_MAXPRICE(state, action: PayloadAction<number>) {
       action.payload <= state.minmax_price_data.max ?
-      state.maxPrice = action.payload : state.maxPrice = state.minmax_price_data.max
+        state.maxPrice = action.payload : state.maxPrice = state.minmax_price_data.max
     },
     SET_MINPRICE(state, action: PayloadAction<number>) {
       action.payload >= state.minmax_price_data.min ?
-      state.minPrice = action.payload : state.minPrice = state.minmax_price_data.min
+        state.minPrice = action.payload : state.minPrice = state.minmax_price_data.min
     },
     SET_ALL_MANUFACTURER(state, action: PayloadAction<string[]>) {
       state.allManufactures = action.payload;
@@ -86,9 +92,9 @@ export const catalogSlice = createSlice({
     REMOVE_FILTERED_MANUFACTURER(state, action: PayloadAction<string>) {
       state.filteredManufactures = state.filteredManufactures.filter(item => item !== action.payload);
     },
-    SET_MIN_MAX_PRICE_FROM_DATA(state, action: PayloadAction< {
+    SET_MIN_MAX_PRICE_FROM_DATA(state, action: PayloadAction<{
       min: number,
-      max:number
+      max: number
     }>) {
       state.minmax_price_data = action.payload;
     },
@@ -96,6 +102,12 @@ export const catalogSlice = createSlice({
       state.filteredManufactures = state.allManufactures;
       state.minPrice = state.minmax_price_data.min;
       state.maxPrice = state.minmax_price_data.max;
+    },
+    SET_TOTAL_COUNT(state, action: PayloadAction<number>) {
+      state.totalCount = action.payload;
+    },
+    SET_CURRENT_PAGE(state, action: PayloadAction<number>) {
+      state.currentPage = action.payload;
     },
   },
   extraReducers: {},
@@ -110,6 +122,8 @@ export const {
   SET_PRODUCTS,
   ADD_FILTERED_MANUFACTURER,
   REMOVE_FILTERED_MANUFACTURER,
-  CLEAR_FILTERS
+  CLEAR_FILTERS,
+  SET_TOTAL_COUNT,
+  SET_CURRENT_PAGE
 } = catalogSlice.actions;
 export default catalogSlice.reducer;

@@ -1,7 +1,7 @@
-import { createAsyncThunk, Dispatch } from "@reduxjs/toolkit";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 import { filterData, getMinMaxFromArray } from "../common/helpers";
 import { catalogSlice, IProduct } from "./catalogReducer";
-import { AppDispatch, RootState } from "./store";
+import { RootState } from "./store";
 
 export interface ISearchParam {
   min: number;
@@ -16,7 +16,7 @@ export interface IFetchProps {
 
 export const fetchProducts = createAsyncThunk(
   "catalog/fetch",
-  async ({ url, searchParam }: IFetchProps, { dispatch, getState  }) => {
+  async ({ url, searchParam }: IFetchProps, { dispatch, getState }) => {
     try {
       const state = getState() as RootState;
       dispatch(catalogSlice.actions.PRODUCTS_FETCHING());
@@ -26,7 +26,7 @@ export const fetchProducts = createAsyncThunk(
       const manufacturer = [
         ...new Set(data.map((product) => product.manufacturer)),
       ];
-      
+      const filterByGroup = state.catalogReducer.filterByGroup;
 
       dispatch(catalogSlice.actions.SET_ALL_MANUFACTURER(manufacturer));
 
@@ -38,14 +38,21 @@ export const fetchProducts = createAsyncThunk(
 
       setTimeout(() => {
         const filteredArray = state.catalogReducer.filteredManufactures.length
-        ? filterData(
+          ? filterData(
             data,
             state.catalogReducer.minPrice,
             state.catalogReducer.maxPrice,
-            state.catalogReducer.filteredManufactures
+            state.catalogReducer.filteredManufactures,
+            filterByGroup
           )
-        : filterData(data, min, max, manufacturer);
-        dispatch(catalogSlice.actions.SET_PRODUCTS(filteredArray));
+          : filterData(data, min, max, manufacturer, filterByGroup);
+
+        const start = state.catalogReducer.currentPage * state.catalogReducer.countPerPage - state.catalogReducer.countPerPage;
+        const end = start + state.catalogReducer.countPerPage;
+        console.log(start, end);
+        dispatch(catalogSlice.actions.SET_TOTAL_COUNT(filteredArray.length))
+        dispatch(catalogSlice.actions.SET_PRODUCTS(filteredArray.slice(start, end)));
+
       }, 500);
     } catch (e: unknown) {
       dispatch(catalogSlice.actions.PRODUCTS_FETCHING_ERROR("not found"));

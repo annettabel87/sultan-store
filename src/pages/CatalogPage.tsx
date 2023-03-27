@@ -26,6 +26,7 @@ export const CatalogPage: FC = () => {
         <SideBar />
         <CardsBlock />
       </div>
+      
     </div>
   );
 };

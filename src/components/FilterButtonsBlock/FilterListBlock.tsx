@@ -2,10 +2,10 @@ import { FC, useEffect, useState } from "react";
 import { DATA_URL, FILTERS, FILTERSNAME } from "../../common/helpers";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { catalogSlice } from "../../Redux/catalogReducer";
-import style from "./FilterButtonsBlock.module.scss";
+import style from "./FilterListBlock.module.scss";
 import { fetchProducts } from "../../Redux/actionCreators";
 
-export const FilterButtonsBlock: FC = () => {
+export const FilterListBlock: FC = () => {
   const [selectedFilter, setSelectedFilter] = useState<FILTERSNAME | "">("");
 
   const filterValue = useAppSelector((state) => state.catalogReducer.filterByGroup);

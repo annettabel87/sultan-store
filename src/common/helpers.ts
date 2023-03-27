@@ -98,15 +98,21 @@ export const filterData = (
   data: IProduct[],
   min: number,
   max: number,
-  manufacturer: string[]
+  manufacturer: string[],
+  filterByGroup?: string
 ) => {
   manufacturer = manufacturer.map((item) => item.toLocaleLowerCase());
-  
+
   return data.filter((product) => {
+
+    const filterGroup = filterByGroup !== '' ? product.groups.includes(filterByGroup as FILTERSNAME) : true
+
+
     return (
       product.price >= min &&
       product.price <= max &&
-      manufacturer.includes(product.manufacturer.toLocaleLowerCase())
+      manufacturer.includes(product.manufacturer.toLocaleLowerCase()) &&
+      filterGroup
     );
   });
 };
