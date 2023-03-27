@@ -1,0 +1,32 @@
+@import '../../variables.scss';
+
+.block {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start;
+    margin-bottom: 31px;
+}
+
+.label {
+    font-weight: 300;
+    line-height: 1.5;
+}
+
+.inputWrapper {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.input {
+    background: linear-gradient(90deg, rgba(255, 198, 80, 0.3) 0%, rgba(254, 202, 110, 0.3) 97.25%);
+    border-radius: 1000px;
+    border: none;
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 15px;
+    text-align: center;
+    max-width: 100px;
+    padding: 4px 4px;
+}

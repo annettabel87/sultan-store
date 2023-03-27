@@ -44,7 +44,7 @@ export const initialState: ICatalogState = {
   error: "",
   minmax_price_data: {
     min: 0,
-    max: 0
+    max: 10000
   },
   filteredManufactures: [],
   currentPage: 1,
@@ -102,6 +102,7 @@ export const catalogSlice = createSlice({
       state.filteredManufactures = state.allManufactures;
       state.minPrice = state.minmax_price_data.min;
       state.maxPrice = state.minmax_price_data.max;
+      state.filterByGroup = ""
     },
     SET_TOTAL_COUNT(state, action: PayloadAction<number>) {
       state.totalCount = action.payload;

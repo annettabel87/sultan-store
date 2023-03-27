@@ -4,9 +4,9 @@ import { catalogSlice, IProduct } from "./catalogReducer";
 import { RootState } from "./store";
 
 export interface ISearchParam {
-  min: number;
-  max: number;
-  manufacturer: string[];
+  min?: number;
+  max?: number;
+  manufacturer?: string[];
 }
 
 export interface IFetchProps {
@@ -33,26 +33,28 @@ export const fetchProducts = createAsyncThunk(
       const { min, max } = getMinMaxFromArray(data);
 
       dispatch(catalogSlice.actions.SET_MIN_MAX_PRICE_FROM_DATA({ min, max }));
-      dispatch(catalogSlice.actions.SET_MINPRICE(min));
-      dispatch(catalogSlice.actions.SET_MAXPRICE(max));
+
+      const maxParam = state.catalogReducer.maxPrice < max ? state.catalogReducer.maxPrice : max;
+      const minParam = state.catalogReducer.minPrice > min ? state.catalogReducer.minPrice : min;
 
       setTimeout(() => {
         const filteredArray = state.catalogReducer.filteredManufactures.length
           ? filterData(
             data,
-            state.catalogReducer.minPrice,
-            state.catalogReducer.maxPrice,
+            minParam,
+            maxParam,
             state.catalogReducer.filteredManufactures,
             filterByGroup
           )
-          : filterData(data, min, max, manufacturer, filterByGroup);
+          : filterData(data, minParam, maxParam, manufacturer, filterByGroup);
+
 
         const start = state.catalogReducer.currentPage * state.catalogReducer.countPerPage - state.catalogReducer.countPerPage;
         const end = start + state.catalogReducer.countPerPage;
         console.log(start, end);
         dispatch(catalogSlice.actions.SET_TOTAL_COUNT(filteredArray.length));
         const sortedArray = sort(filteredArray, state.catalogReducer.sortValue);
-        dispatch(catalogSlice.actions.SET_PRODUCTS(sortedArray));
+        dispatch(catalogSlice.actions.SET_PRODUCTS(sortedArray.slice(start, end)));
 
       }, 500);
     } catch (e: unknown) {

@@ -101,6 +101,7 @@ export const filterData = (
   manufacturer: string[],
   filterByGroup?: string
 ) => {
+
   manufacturer = manufacturer.map((item) => item.toLocaleLowerCase());
 
   return data.filter((product) => {

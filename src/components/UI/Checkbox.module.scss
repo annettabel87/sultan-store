@@ -1,0 +1,11 @@
+@import '../../variables.scss';
+
+.checkboxBlock {
+    display: flex;
+    gap: 10px;
+}
+
+.label {
+    font-weight: 400;
+    line-height: 1.5;
+}

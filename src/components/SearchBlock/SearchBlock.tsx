@@ -1,9 +1,10 @@
 import { FC, useEffect, useState } from "react";
 import { useAppDispatch } from "../../hooks/hooks";
 import { ADD_FILTERED_MANUFACTURER, REMOVE_FILTERED_MANUFACTURER } from "../../Redux/catalogReducer";
-import style from "./SearchBlock.module.scss";
+import { Checkbox } from "../UI/Checkbox";
 import { Input } from "../UI/Input";
 import search from "../../assets/icon/search.svg";
+import style from "./SearchBlock.module.scss";
 
 export interface ISearchBlockProps {
   manufacturers: string[];
@@ -11,10 +12,10 @@ export interface ISearchBlockProps {
 
 export const SearchBlock: FC<ISearchBlockProps> = ({ manufacturers }) => {
   const dispatch = useAppDispatch();
+
   const [searchData, setSearchData] = useState("");
   const [showMore, setShowMore] = useState(false);
-  const [filteredManufacturers, setFilteredManufacturers] =
-    useState(manufacturers);
+  const [filteredManufacturers, setFilteredManufacturers] = useState(manufacturers);
 
   useEffect(() => {
     const filteredData = manufacturers.filter((item) =>
@@ -30,6 +31,7 @@ export const SearchBlock: FC<ISearchBlockProps> = ({ manufacturers }) => {
       dispatch(REMOVE_FILTERED_MANUFACTURER(name.toLocaleLowerCase()))
     }
   }
+
   return (
     <div className={style.block}>
       <label className={style.label}>Производитель</label>
@@ -46,35 +48,27 @@ export const SearchBlock: FC<ISearchBlockProps> = ({ manufacturers }) => {
           <>
             {filteredManufacturers.slice(0, 4).map((manufacturer, index) => {
               return (
-                <div key={index}>
-                  <input className={style.input}
-                    type="checkbox"
-                    name={manufacturer}
-                    id={manufacturer}
-                    value={manufacturer}
-                    onChange={(e) => onChangeHandler(e, manufacturer)}
-                  />
-                  <span>{manufacturer}</span>
-                </div>
+                <Checkbox key={index}
+                  id={manufacturer}
+                  name={manufacturer}
+                  value={manufacturer}
+                  onChangeHandler={onChangeHandler}
+                />
               );
             })}
-            <button className="btn" onClick={() => setShowMore(!showMore)}>
-              Show more
+            <button className={style.btn} onClick={() => setShowMore(!showMore)}>
+              Показать все
             </button>
           </>
         ) : (
           filteredManufacturers.map((manufacturer, index) => {
             return (
-              <div key={manufacturer}>
-                <input
-                  type="checkbox"
-                  name={manufacturer}
-                  id={manufacturer}
-                  value={manufacturer}
-                  onChange={(e) => onChangeHandler(e, manufacturer)}
-                />
-                <span>{manufacturer}</span>
-              </div>
+              <Checkbox key={index}
+                id={manufacturer}
+                name={manufacturer}
+                value={manufacturer}
+                onChangeHandler={onChangeHandler}
+              />
             );
           })
         )}
