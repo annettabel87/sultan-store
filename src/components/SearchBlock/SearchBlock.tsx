@@ -2,6 +2,8 @@ import { FC, useEffect, useState } from "react";
 import { useAppDispatch } from "../../hooks/hooks";
 import { ADD_FILTERED_MANUFACTURER, REMOVE_FILTERED_MANUFACTURER } from "../../Redux/catalogReducer";
 import style from "./SearchBlock.module.scss";
+import { Input } from "../UI/Input";
+import search from "../../assets/icon/search.svg";
 
 export interface ISearchBlockProps {
   manufacturers: string[];
@@ -22,7 +24,7 @@ export const SearchBlock: FC<ISearchBlockProps> = ({ manufacturers }) => {
   }, [manufacturers, searchData, setSearchData]);
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>, name: string) => {
-    if(e.target.checked) {
+    if (e.target.checked) {
       dispatch(ADD_FILTERED_MANUFACTURER(name.toLocaleLowerCase()))
     } else {
       dispatch(REMOVE_FILTERED_MANUFACTURER(name.toLocaleLowerCase()))
@@ -31,23 +33,21 @@ export const SearchBlock: FC<ISearchBlockProps> = ({ manufacturers }) => {
   return (
     <div className={style.block}>
       <label className={style.label}>Производитель</label>
-      <input
-        className={style.input}
-        type="text"
-        name="manufacturer"
-        placeholder="Поиск..."
+      <Input placeholder={"Поиск..."}
+        type={"text"} width={"238"}
+        name={"manufacturer"}
         value={searchData}
+        iconSrc={search}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-          setSearchData(e.target.value)
-        }
+          setSearchData(e.target.value)}
       />
-      <div className="manufacturesBlock">
+      <div className={style.manufacturesBlock}>
         {!showMore ? (
           <>
             {filteredManufacturers.slice(0, 4).map((manufacturer, index) => {
               return (
                 <div key={index}>
-                  <input
+                  <input className={style.input}
                     type="checkbox"
                     name={manufacturer}
                     id={manufacturer}

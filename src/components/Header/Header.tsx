@@ -56,7 +56,7 @@ export const Header: FC = () => {
               type={"text"}
               iconSrc={search}
               width="263"
-            />
+              name={"search"} />
           </div>
           <div className={style.secondColumn}>
             <div className={style.phoneBlock}>
