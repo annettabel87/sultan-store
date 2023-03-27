@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { filterData, getMinMaxFromArray } from "../common/helpers";
+import { filterData, getMinMaxFromArray, sort } from "../common/helpers";
 import { catalogSlice, IProduct } from "./catalogReducer";
 import { RootState } from "./store";
 
@@ -50,8 +50,9 @@ export const fetchProducts = createAsyncThunk(
         const start = state.catalogReducer.currentPage * state.catalogReducer.countPerPage - state.catalogReducer.countPerPage;
         const end = start + state.catalogReducer.countPerPage;
         console.log(start, end);
-        dispatch(catalogSlice.actions.SET_TOTAL_COUNT(filteredArray.length))
-        dispatch(catalogSlice.actions.SET_PRODUCTS(filteredArray.slice(start, end)));
+        dispatch(catalogSlice.actions.SET_TOTAL_COUNT(filteredArray.length));
+        const sortedArray = sort(filteredArray, state.catalogReducer.sortValue);
+        dispatch(catalogSlice.actions.SET_PRODUCTS(sortedArray));
 
       }, 500);
     } catch (e: unknown) {

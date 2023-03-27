@@ -126,3 +126,19 @@ export const getMinMaxFromArray = (array: IProduct[]) => {
     max: sortedArray[sortedArray.length - 1].price,
   };
 };
+
+export const sort = (array: IProduct[], value: string) => {
+  const copyArray = [...array];
+  switch (value) {
+    case SORTNAMES.TITLE:
+      return copyArray.sort((a, b) => (a.title > b.title ? 1 : -1));
+    case SORTNAMES.TITLE_REVERSE:
+      return copyArray.sort((a, b) => (a.title > b.title ? -1 : 1));
+    case SORTNAMES.PRICE:
+      return copyArray.sort((a, b) => (a.price - b.price ));
+    case SORTNAMES.PRICE_REVERSE:
+      return copyArray.sort((a, b) => (b.price - a.price ));
+    default:
+      return array;
+  }
+};

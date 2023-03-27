@@ -1,13 +1,12 @@
 import { FC } from "react";
 import { SORTNAMES, SORTSVALUES } from "../../common/helpers";
-import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
-import { catalogSlice } from "../../Redux/catalogReducer";
 import style from "./SortBlock.module.scss";
 
-export const SortBlock: FC = () => {
-  const sortValue = useAppSelector((state) => state.catalogReducer.sortValue);
-  const dispatch = useAppDispatch();
-  const { SET_SORTVALUE } = catalogSlice.actions;
+interface ISearchBlockProps {
+  sortValue: "" | SORTNAMES,
+  stSortValue: (value: SORTNAMES) => void,
+}
+export const SortBlock: FC<ISearchBlockProps> = ({ sortValue, stSortValue }) => {
 
   return (
     <form className={style.form}>
@@ -17,7 +16,7 @@ export const SortBlock: FC = () => {
         id="sort"
         className={style.select}
         value={sortValue}
-        onChange={(e) => dispatch(SET_SORTVALUE(e.target.value as SORTNAMES))}
+        onChange={(e) => stSortValue(e.target.value as SORTNAMES)}
       >
         {SORTSVALUES.map((sortName) => {
           return <option key={sortName.name} value={sortName.name}>{sortName.title}</option>;
