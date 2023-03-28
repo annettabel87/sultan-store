@@ -31,6 +31,7 @@ interface ICatalogState {
   currentPage: number,
   totalCount: number,
   countPerPage: number
+  selectedCard: IProduct
 }
 
 export const initialState: ICatalogState = {
@@ -50,6 +51,19 @@ export const initialState: ICatalogState = {
   currentPage: 1,
   totalCount: 1,
   countPerPage: 15,
+  selectedCard: {
+    id: -1,
+    urlImg: "",
+    title: "",
+    sizeType: "",
+    size: "",
+    barcode: -1,
+    manufacturer: "",
+    brand: "",
+    description: "",
+    price: -1,
+    groups: []
+  }
 };
 
 export const catalogSlice = createSlice({
@@ -110,6 +124,9 @@ export const catalogSlice = createSlice({
     SET_CURRENT_PAGE(state, action: PayloadAction<number>) {
       state.currentPage = action.payload;
     },
+    SELECT_CARD(state, action: PayloadAction<IProduct>) {
+      state.selectedCard = action.payload;
+    },
   },
   extraReducers: {},
 });
@@ -125,6 +142,7 @@ export const {
   REMOVE_FILTERED_MANUFACTURER,
   CLEAR_FILTERS,
   SET_TOTAL_COUNT,
-  SET_CURRENT_PAGE
+  SET_CURRENT_PAGE,
+  SELECT_CARD
 } = catalogSlice.actions;
 export default catalogSlice.reducer;

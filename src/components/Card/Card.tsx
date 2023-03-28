@@ -9,7 +9,7 @@ import { ButtonSmall } from "../UI/ButtonSmall";
 
 export const Card: FC<IProduct> = ({ id, urlImg, title, barcode, manufacturer, brand, price, size, sizeType }) => {
     return (
-        <div className={style.card}>
+        <div className={style.card} data-id={id}>
             <img src={urlImg} alt="product" className={style.img} />
             <div className={style.volume}>
                 <img src={sizeType === "weight" ? weight : volume} alt="icon" />

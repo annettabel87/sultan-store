@@ -6,6 +6,7 @@ import { fetchProducts } from "../../Redux/actionCreators";
 import { DATA_URL } from "../../common/helpers";
 import style from "./CardsBlock.module.scss";
 import { Card } from "../Card/Card";
+import { Link } from "react-router-dom";
 
 export const CardsBlock: FC = () => {
   const { products, currentPage, totalCount, countPerPage } = useAppSelector(store => store.catalogReducer);
@@ -24,7 +25,7 @@ export const CardsBlock: FC = () => {
   return (
     <div className={style.cardBlock}>
       <div className={style.block}>
-        {products.map(product => <Card {...product} key={product.id} />)}
+        {products.map(product => <Link to={`/catalog/card/${product.id}`}> <Card {...product} key={product.id} /></Link> )}
       </div>
       <Pagination currentPage={currentPage} countPerPage={countPerPage} totalCountItems={totalCount} onSetPage={onSetPage} />
       <p className={style.text}>

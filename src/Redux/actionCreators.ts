@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { filterData, getMinMaxFromArray, sort } from "../common/helpers";
+import { DATA_URL, filterData, getMinMaxFromArray, sort } from "../common/helpers";
 import { catalogSlice, IProduct } from "./catalogReducer";
 import { RootState } from "./store";
 
@@ -13,6 +13,7 @@ export interface IFetchProps {
   url: string;
   searchParam?: ISearchParam;
 }
+
 
 export const fetchProducts = createAsyncThunk(
   "catalog/fetch",
@@ -56,6 +57,28 @@ export const fetchProducts = createAsyncThunk(
         const sortedArray = sort(filteredArray, state.catalogReducer.sortValue);
         dispatch(catalogSlice.actions.SET_PRODUCTS(sortedArray.slice(start, end)));
 
+      }, 500);
+    } catch (e: unknown) {
+      dispatch(catalogSlice.actions.PRODUCTS_FETCHING_ERROR("not found"));
+    }
+  }
+);
+
+export interface IFetchCardProps {
+  id: number;
+}
+export const fetchFullProduct = createAsyncThunk(
+  "card/fetch",
+  async ({ id }: IFetchCardProps, { dispatch, getState }) => {
+    try {
+      const state = getState() as RootState;
+      dispatch(catalogSlice.actions.PRODUCTS_FETCHING());
+      const response = await fetch(DATA_URL);
+      const data: IProduct[] = await response.json();
+      const product = data.filter(product => product.id === id)[0]
+
+      setTimeout(() => {
+        dispatch(catalogSlice.actions.SELECT_CARD(product));
       }, 500);
     } catch (e: unknown) {
       dispatch(catalogSlice.actions.PRODUCTS_FETCHING_ERROR("not found"));
