@@ -38,3 +38,50 @@
 .form {
     margin-bottom: 40px;
 }
+
+.btn {
+    border: none;
+    background-color: inherit;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.5;
+    color: $mainText;
+    margin-top: 10px;
+
+    &::after {
+        content: url('../../assets/icon/showMore.svg');
+        margin-left: 5px;
+    }
+
+}
+
+.brandBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.brandWrapp {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 238px;
+    gap: 10px;
+    padding-top: 10px;
+
+    .brandCard {
+        width: 47%;
+        box-shadow: 0px 15px 70px -11px rgba(43, 28, 1, 0.04);
+        border-radius: 10px;
+    }
+
+    .brandCard:nth-child(3n) {
+        width: 100%;
+        padding: 15px;
+    }
+}
+
+.separator {
+    border: 1px dashed #3F4E65;
+    width: 92%;
+    margin: 20px 0;
+}
