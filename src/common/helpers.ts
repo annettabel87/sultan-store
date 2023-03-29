@@ -1,3 +1,4 @@
+import { IBasketItem } from "../Redux/basketReducer";
 import { IProduct } from "../Redux/catalogReducer";
 
 export const DATA_URL = "/data.json";
@@ -143,3 +144,7 @@ export const sort = (array: IProduct[], value: string) => {
       return array;
   }
 };
+
+export const calculateTotalPrice = (data: IBasketItem[]) => {
+  return data.reduce((sum, item)  =>  sum + (item.quantity * item.price), 0)
+}
