@@ -14,11 +14,13 @@ export interface IBasketItem {
 
 interface IBasketState {
   basket: IBasketItem[],
-  totalPrice: number
+  totalPrice: number,
+  countItems: number
 }
 export const initialState: IBasketState = {
   basket: [],
   totalPrice: 0,
+  countItems: 0
 };
 
 export const basketSlice = createSlice({
@@ -29,7 +31,8 @@ export const basketSlice = createSlice({
       const findItem = state.basket.find(item => item.id === action.payload.id);
       findItem ? findItem.quantity++ :
         state.basket.push(action.payload);
-      state.totalPrice = calculateTotalPrice(state.basket)
+        state.totalPrice = calculateTotalPrice(state.basket);
+        state.countItems =  state.basket.length;
     },
     REMOVE_ITEM(state, action: PayloadAction<number>) {
       delete state.basket[action.payload]
@@ -37,6 +40,7 @@ export const basketSlice = createSlice({
     CLEAR_BASKET(state) {
       state.basket = [];
       state.totalPrice = 0;
+      state.countItems = 0;
     },
   },
   extraReducers: {},

@@ -13,8 +13,11 @@ import catalogIconMb from "../../assets/icon/catalog-mb.svg";
 import downloadIcon from "../../assets/icon/download.svg";
 import phoneImg from "../../assets/img/contacts.png";
 import basket from "../../assets/icon/basket.svg";
+import { useAppSelector } from "../../hooks/hooks";
 
 export const Header: FC = () => {
+  const {totalPrice, countItems} = useAppSelector(state => state.basketReducer)
+
   return (
     <header className={style.header}>
       <div className={style.head}>
@@ -71,14 +74,14 @@ export const Header: FC = () => {
             </div>
             <ButtonBig text={"Прайс-лист"} iconSrc={downloadIcon} />
             <div className={style.basketBlock}>
-              <span className={style.count}>3</span>
+              <span className={style.count}>{countItems}</span>
               <NavLink to={ROUTE.BASKET} className={style.basketBtn}>
                 <img src={basket} alt="basket" />
               </NavLink>
               <div className={style.basketText}>
                 <p className={style.textBlock}>Корзина</p>
                 <p className={style.textBold}>
-                  <span className={style.basketPrice}>1234</span> ₸
+                  <span className={style.basketPrice}>{totalPrice}</span> ₸
                 </p>
               </div>
             </div>
