@@ -1,0 +1,20 @@
+@import "../variables.scss";
+
+
+.title {
+    text-align: left;
+    font-size: $titleFontSize;
+    font-weight: 600;
+    line-height: 1.2;
+    text-transform: uppercase;
+    color: $boldText;
+    letter-spacing: 1px;
+    margin-bottom: 25px;
+}
+
+.separator {
+    border-bottom: 1px dashed #3F4E65;
+    width: 100%;
+    margin: 50px 0;
+}
+

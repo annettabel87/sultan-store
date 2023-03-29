@@ -1,0 +1,198 @@
+@import '../../variables.scss';
+
+.card {
+    display: flex;
+    gap: 100px;
+    padding-top: 49px;
+    max-width: 1332px;
+    align-items: flex-start;
+
+    .img {
+        flex: 1;
+    }
+
+    .description {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .greenText {
+        font-weight: 500;
+        line-height: 1.3;
+        color: #1FD85D;
+        margin-bottom: 10px;
+    }
+
+    .title {
+        font-weight: 500;
+        font-size: 30px;
+        line-height: 1.5;
+        color: $boldText;
+        text-align: left;
+        margin-bottom: 9px;
+    }
+
+    .smallText {
+        font-size: 12px;
+        line-height: 1.5;
+        text-align: center;
+    }
+}
+
+.volumeBlock {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 19px;
+}
+
+.buyBlock {
+    display: flex;
+    align-items: center;
+    gap: 67px;
+    margin-bottom: 27px;
+
+    .price {
+        font-weight: 800;
+        font-size: 30px;
+        line-height: 1.3;
+        color: $boldText;
+    }
+
+    .amountBlock {
+        display: flex;
+        align-items: center;
+        gap: 17px;
+        
+
+        .amountBtn {
+            background: linear-gradient(90deg, rgba(255, 198, 80, 0.3) 0%, rgba(254, 202, 110, 0.3) 97.25%);
+            border-radius: 1000px;
+            font-size: 12px;
+            border: none;
+            padding: 5px 14px;
+            cursor: pointer;
+            transition: all 0.2s linear;
+
+            &:hover {
+                background-color: $secondaryColor;
+            }
+        }
+
+        .amount {
+            font-weight: 500;
+        }
+    }
+}
+
+.shareBlock {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 36px;
+
+    .shareBtn {
+        box-shadow: 0px 15px 70px -11px rgba(43, 28, 1, 0.04);
+        border-radius: 10px;
+        border: none;
+        background-color: inherit;
+        padding: 26px 29px;
+    }
+
+    .priceBtn {
+        box-shadow: 0px 15px 70px -11px rgba(43, 28, 1, 0.04);
+        border-radius: 10px;
+        border: none;
+        background-color: inherit;
+        padding: 30px 37px;
+        font-weight: 700;
+        font-size: $mainFontSize;
+        line-height: 17px;
+
+        &::after {
+            content: url('../../assets/icon/download.svg');
+            margin-left: 11px;
+        }
+    }
+
+    p {
+        box-shadow: 0px 15px 70px -11px rgba(43, 28, 1, 0.04);
+        border-radius: 10px;
+        max-width: 316px;
+        padding: 20px 22px;
+
+        .bold {
+            font-weight: 600;
+        }
+    }
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 30px;
+}
+
+.about {
+    text-align: left;
+
+    .smallText {
+        text-align: left;
+    }
+}
+
+.aboutBtn {
+    border: none;
+    background-color: inherit;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.5;
+    color: $boldText;
+    margin-bottom: 15px;
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s linear;
+
+    &:hover {
+        color: lighten($color: $boldText, $amount: 35%)
+    }
+
+}
+
+.separator {
+    border-bottom: 1px dashed $mainText;
+    width: 44%;
+    margin: 20px 0;
+}
+
+.subDescription {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    .text {
+        font-weight: 300;
+        line-height: 1.5;
+    }
+
+    .boldText {
+        font-weight: 500;
+        color: $boldText;
+        line-height: 1.5;
+    }
+}
+
+.characteristicsBlock {
+    text-align: left;
+
+    .characteristics {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+}

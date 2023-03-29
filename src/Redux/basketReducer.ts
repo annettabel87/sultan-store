@@ -35,7 +35,9 @@ export const basketSlice = createSlice({
         state.countItems =  state.basket.length;
     },
     REMOVE_ITEM(state, action: PayloadAction<number>) {
-      delete state.basket[action.payload]
+      state.basket = state.basket.filter(item => item.id !== action.payload);
+      state.totalPrice = calculateTotalPrice(state.basket);
+        state.countItems =  state.basket.length;
     },
     CLEAR_BASKET(state) {
       state.basket = [];
