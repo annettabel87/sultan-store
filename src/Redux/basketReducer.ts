@@ -28,7 +28,7 @@ export const basketSlice = createSlice({
     ADD_ITEM(state, action: PayloadAction<IBasketItem>) {
       const findItem = state.basket.find(item => item.id === action.payload.id);
       findItem ? findItem.quantity++ :
-        state.basket.push({ ...action.payload, quantity: 1 });
+        state.basket.push(action.payload);
       state.totalPrice = calculateTotalPrice(state.basket)
     },
     REMOVE_ITEM(state, action: PayloadAction<number>) {

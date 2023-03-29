@@ -8,6 +8,8 @@ import { ButtonSmall } from "../UI/ButtonSmall";
 import showBtn from "../../assets/icon/selectArrow.svg";
 import unshowBtn from "../../assets/icon/unshowBtn.svg";
 import style from "./FullCard.module.scss";
+import { IBasketItem, ADD_ITEM } from "../../Redux/basketReducer";
+import { useAppDispatch } from "../../hooks/hooks";
 
 export interface IFullCardProps {
     product: IProduct
@@ -17,6 +19,8 @@ export const FullCard: FC<IFullCardProps> = ({ product }) => {
     const [visibilityAbout, setVisibilityAbout] = useState<boolean>(false);
     const [visibilityCharacteristics, setVisibilityCharacteristics] = useState<boolean>(false);
     const [countProduct, setCountProduct] = useState<number>(0);
+
+    const dispatch = useAppDispatch();
 
     const toggleVisibilityAbout = () => {
         setVisibilityAbout(prev => !prev)
@@ -36,6 +40,20 @@ export const FullCard: FC<IFullCardProps> = ({ product }) => {
         setCountProduct(count => count + 1)
     }
 
+    const addToBasket = () => {
+        const  item: IBasketItem = {
+            id,
+            urlImg,
+            title,
+            sizeType,
+            size,
+            description,
+            price,
+            quantity: countProduct
+        }
+        dispatch(ADD_ITEM(item))
+   }
+
     return (
         <div className={style.card}>
             <img className={style.img} src={urlImg} alt="product" />
@@ -53,7 +71,7 @@ export const FullCard: FC<IFullCardProps> = ({ product }) => {
                         <span className={style.amount}>{countProduct}</span>
                         <button className={style.amountBtn} onClick={incrementCountProduct}>+</button>
                     </div>
-                    <ButtonSmall text={"В корзину"} iconSrc={basketBtn} />
+                    <ButtonSmall text={"В корзину"} iconSrc={basketBtn} handler={addToBasket}/>
                 </div>
                 <div className={style.shareBlock}>
                     <button className={style.shareBtn}><img src={share} alt="share" /></button>
