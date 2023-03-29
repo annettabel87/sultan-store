@@ -25,7 +25,7 @@ export const CardsBlock: FC = () => {
   return (
     <div className={style.cardBlock}>
       <div className={style.block}>
-        {products.map(product => <Link to={`/catalog/card/${product.id}`}> <Card {...product} key={product.id} /></Link> )}
+        {products.map(product => <Card {...product} key={product.id} /> )}
       </div>
       <Pagination currentPage={currentPage} countPerPage={countPerPage} totalCountItems={totalCount} onSetPage={onSetPage} />
       <p className={style.text}>

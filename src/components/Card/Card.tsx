@@ -1,15 +1,35 @@
 import { FC } from "react";
-import style from "./Card.module.scss";
 import { IProduct } from "../../Redux/catalogReducer";
+import { ButtonSmall } from "../UI/ButtonSmall";
+import { ADD_ITEM, IBasketItem } from "../../Redux/basketReducer";
+import { useAppDispatch } from "../../hooks/hooks";
+import { Link } from "react-router-dom";
 import weight from "../../assets/icon/weight.svg";
 import volume from "../../assets/icon/volume.svg";
 import basketBtn from "../../assets/icon/basketBtn.svg";
-import { ButtonSmall } from "../UI/ButtonSmall";
+import style from "./Card.module.scss";
 
 
-export const Card: FC<IProduct> = ({ id, urlImg, title, barcode, manufacturer, brand, price, size, sizeType }) => {
+export const Card: FC<IProduct> = ({ id, urlImg, title, barcode, manufacturer, brand, price, size, sizeType, description }) => {
+    const dispatch = useAppDispatch();
+
+    const addToBasket = () => {
+        const  item: IBasketItem = {
+            id,
+            urlImg,
+            title,
+            sizeType,
+            size,
+            description,
+            price,
+            quantity: 1
+        }
+        dispatch(ADD_ITEM(item))
+   }
+
     return (
-        <div className={style.card} data-id={id}>
+         <div className={style.card} data-id={id}>
+            <Link to={`/catalog/card/${id}`}>
             <img src={urlImg} alt="product" className={style.img} />
             <div className={style.volume}>
                 <img src={sizeType === "weight" ? weight : volume} alt="icon" />
@@ -30,9 +50,10 @@ export const Card: FC<IProduct> = ({ id, urlImg, title, barcode, manufacturer, b
                     <p className={style.boldText}>{brand}</p>
                 </div>
             </div>
+            </Link>
             <div className={style.priceBlock}>
                 <p className={style.price}>{price} ₸</p>
-                <ButtonSmall text={"в корзину"} iconSrc={basketBtn} />
+                <ButtonSmall text={"в корзину"} iconSrc={basketBtn} handler={addToBasket}/>
             </div>
         </div>
     )
