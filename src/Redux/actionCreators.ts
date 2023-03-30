@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { AUTH_URL, DATA_URL, filterData, getMinMaxFromArray, sort } from "../common/helpers";
+import { AUTH_URL, DATA_URL, LOCAL_STORAGE_KEYS, filterData, getMinMaxFromArray, sort } from "../common/helpers";
 import { catalogSlice, IProduct } from "./catalogReducer";
 import { RootState } from "./store";
 import { IUser, authSlice } from "./authReducer";
@@ -26,7 +26,7 @@ export const fetchProducts = createAsyncThunk(
 
 
       setTimeout(async() => {
-        const localStorageProducts = localStorage.getItem("products");
+        const localStorageProducts = localStorage.getItem(LOCAL_STORAGE_KEYS.PRODUCTS);
         let  data: IProduct[];
 
       if(localStorageProducts) {
@@ -34,7 +34,7 @@ export const fetchProducts = createAsyncThunk(
       } else {
         const response = await fetch(url);
         data = await response.json();
-        localStorage.setItem("products", JSON.stringify(data));
+        localStorage.setItem(LOCAL_STORAGE_KEYS.PRODUCTS, JSON.stringify(data));
       }
 
       dispatch(catalogSlice.actions.PRODUCTS_FETCHING(false));
@@ -119,8 +119,8 @@ export const fetchAuthData = createAsyncThunk(
         const userData: IUser[] = await response.json();
         const user = userData.find(item => item.username === login && item.password === password)
         if (user) {
-          localStorage.setItem('auth', 'true');
-          localStorage.setItem('username', user.username);
+          localStorage.setItem(LOCAL_STORAGE_KEYS.AUTH, 'true');
+          localStorage.setItem(LOCAL_STORAGE_KEYS.USERNAME, user.username);
           dispatch(authSlice.actions.SET_USER(user));
           dispatch(authSlice.actions.SET_AUTH(true));
           dispatch(authSlice.actions.SET_IS_LOADING(false));

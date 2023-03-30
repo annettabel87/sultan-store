@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { FILTERSNAME, SORTNAMES } from "../common/helpers";
+import { FILTERSNAME, LOCAL_STORAGE_KEYS, SORTNAMES } from "../common/helpers";
 
 export interface IProduct {
   id: number;
@@ -127,6 +127,10 @@ export const catalogSlice = createSlice({
     SELECT_CARD(state, action: PayloadAction<IProduct>) {
       state.selectedCard = action.payload;
     },
+    CLEAR_STATE(state) {
+      localStorage.removeItem(LOCAL_STORAGE_KEYS.PRODUCTS);
+      state.products = [];
+    }
   },
   extraReducers: {},
 });
@@ -143,6 +147,7 @@ export const {
   CLEAR_FILTERS,
   SET_TOTAL_COUNT,
   SET_CURRENT_PAGE,
-  SELECT_CARD
+  SELECT_CARD,
+  CLEAR_STATE
 } = catalogSlice.actions;
 export default catalogSlice.reducer;

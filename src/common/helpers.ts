@@ -34,6 +34,12 @@ export const privateRoutes: IRoute[] = [
   {path: ROUTE.ADMIN, element: AdminPage}
 ]
 
+export enum LOCAL_STORAGE_KEYS {
+  PRODUCTS = "products",
+  USERNAME = "username",
+  AUTH = "auth",
+}
+
 export enum FILTERSNAME {
   BODY = "body",
   HAND = "hand",

@@ -18,9 +18,6 @@ export const CatalogPage: FC = () => {
   const setSortValue = (value: SORTNAMES) => {
     dispatch(SET_SORTVALUE(value));
   }
-  useEffect(() => {
-    dispatch(fetchProducts({ url: DATA_URL }));
-  }, []);
 
   useEffect(() => {
     dispatch(fetchProducts({ url: DATA_URL }));

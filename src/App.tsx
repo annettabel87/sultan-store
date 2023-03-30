@@ -6,17 +6,23 @@ import style from "./App.module.scss";
 import { AppRouter } from "./components/AppRouter";
 import  { IUser, authSlice } from "./Redux/authReducer";
 import { useAppDispatch } from "./hooks/hooks";
+import { DATA_URL, LOCAL_STORAGE_KEYS } from "./common/helpers";
+import { fetchProducts } from "./Redux/actionCreators";
 
 function App() {
   const dispatch = useAppDispatch();
   const {SET_AUTH, SET_USER} = authSlice.actions;
 
   useEffect(() => {
-    if(localStorage.getItem("auth")) {
-      dispatch(SET_USER({username: localStorage.getItem("username" || "") }as IUser));
+    if(localStorage.getItem(LOCAL_STORAGE_KEYS.AUTH)) {
+      dispatch(SET_USER({username: localStorage.getItem(LOCAL_STORAGE_KEYS.AUTH || "") }as IUser));
       dispatch(SET_AUTH(true));
     }
   }, [])
+
+  useEffect(() => {
+    dispatch(fetchProducts({ url: DATA_URL }));
+  }, []);
 
   return (
     <div className={style.App}>

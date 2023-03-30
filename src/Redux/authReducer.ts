@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { LOCAL_STORAGE_KEYS } from "../common/helpers";
 
 export interface IUser {
   username: string;
@@ -38,8 +39,8 @@ export const authSlice = createSlice({
       state.isLoading = action.payload;
     },
     LOGOUT(state) {
-      localStorage.removeItem('auth');
-      localStorage.removeItem('username');
+      localStorage.removeItem(LOCAL_STORAGE_KEYS.AUTH);
+      localStorage.removeItem(LOCAL_STORAGE_KEYS.USERNAME);
       state.user=  {} as IUser;
       state.isAuth = false;
     },
