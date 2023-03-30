@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { ButtonBig } from "../UI/ButtonBig";
 import { Input } from "../UI/Input";
 import { ROUTE } from "../../common/helpers";
-
+import { useAppSelector } from "../../hooks/hooks";
 import style from "./Header.module.scss";
 import logo from "../../assets/icon/logo.svg";
 import search from "../../assets/icon/search.svg";
@@ -13,7 +13,7 @@ import catalogIconMb from "../../assets/icon/catalog-mb.svg";
 import downloadIcon from "../../assets/icon/download.svg";
 import phoneImg from "../../assets/img/contacts.png";
 import basket from "../../assets/icon/basket.svg";
-import { useAppSelector } from "../../hooks/hooks";
+
 
 export const Header: FC = () => {
   const {totalPrice, countItems} = useAppSelector(state => state.basketReducer)
@@ -53,7 +53,7 @@ export const Header: FC = () => {
             <NavLink to={ROUTE.CATALOG} className={style.logo}>
               <img src={logo} alt="logo" className={style.logoImg} />
             </NavLink>
-            <ButtonBig text={"Каталог"} iconSrc={catalogIcon} />
+            <NavLink to={ROUTE.CATALOG}><ButtonBig text={"Каталог"} iconSrc={catalogIcon} /></NavLink>
             <Input
               placeholder={"Поиск..."}
               type={"text"}
