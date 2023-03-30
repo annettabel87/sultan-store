@@ -17,7 +17,7 @@ import basket from "../../assets/icon/basket.svg";
 
 export const Header: FC = () => {
   const {totalPrice, countItems} = useAppSelector(state => state.basketReducer)
-
+  const isAuth = true;
   return (
     <header className={style.header}>
       <div className={style.head}>
@@ -73,6 +73,14 @@ export const Header: FC = () => {
               <img src={phoneImg} alt="phone" />
             </div>
             <ButtonBig text={"Прайс-лист"} iconSrc={downloadIcon} />
+
+            <div className={style.authBlock}>
+            {
+              isAuth ?
+                <button className={style.authBtn}>Выйти</button>
+              :
+              <button className={style.authBtn}>Войти</button>
+             }
             <div className={style.basketBlock}>
               <span className={style.count}>{countItems}</span>
               <NavLink to={ROUTE.BASKET} className={style.basketBtn}>
@@ -84,6 +92,7 @@ export const Header: FC = () => {
                   <span className={style.basketPrice}>{totalPrice}</span> ₸
                 </p>
               </div>
+            </div>
             </div>
           </div>
         </div>

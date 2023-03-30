@@ -282,7 +282,7 @@
         flex: 1;
         border: none;
         background-color: inherit;
-        align-items: center;              
+        align-items: center;
         padding: 13px 15px;
         display: flex;
         gap: 16px;
@@ -294,6 +294,26 @@
 
         &:first-child {
             border-right: 2px dashed #3f4e6521;
+        }
+    }
+}
+
+.authBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    .authBtn {
+        background-color: $secondaryColor;
+        padding: 10px 14px;
+        border-radius: 15px;
+        color: $mainBg;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s linear;
+
+        &:hover {
+            transform: scale(1.2);
         }
     }
 }
