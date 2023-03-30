@@ -1,6 +1,5 @@
 import React, { FC, useEffect } from 'react';
 import ReactDom from 'react-dom';
-import style from './Modal.module.scss';
 
 export interface IModalProps {
     children: React.ReactNode;

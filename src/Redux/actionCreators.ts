@@ -1,17 +1,19 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { DATA_URL, filterData, getMinMaxFromArray, sort } from "../common/helpers";
+import { AUTH_URL, DATA_URL, filterData, getMinMaxFromArray, sort } from "../common/helpers";
 import { catalogSlice, IProduct } from "./catalogReducer";
 import { RootState } from "./store";
+import { IUser, authSlice } from "./authReducer";
+
 
 export interface ISearchParam {
-  min?: number;
-  max?: number;
-  manufacturer?: string[];
+  min?: number,
+  max?: number,
+  manufacturer?: string[],
 }
 
 export interface IFetchProps {
-  url: string;
-  searchParam?: ISearchParam;
+  url: string,
+  searchParam?: ISearchParam,
 }
 
 
@@ -65,13 +67,13 @@ export const fetchProducts = createAsyncThunk(
 );
 
 export interface IFetchCardProps {
-  id: number;
+  id: number,
 }
+
 export const fetchFullProduct = createAsyncThunk(
   "card/fetch",
   async ({ id }: IFetchCardProps, { dispatch, getState }) => {
     try {
-      const state = getState() as RootState;
       dispatch(catalogSlice.actions.PRODUCTS_FETCHING());
       const response = await fetch(DATA_URL);
       const data: IProduct[] = await response.json();
@@ -85,3 +87,41 @@ export const fetchFullProduct = createAsyncThunk(
     }
   }
 );
+
+export interface IFetchAuthProps {
+  login: string,
+  password: string
+}
+
+export const fetchAuthData = createAsyncThunk(
+  "login",
+  async ({ login, password }: IFetchAuthProps, { dispatch }) => {
+    try {
+
+      dispatch(authSlice.actions.SET_IS_LOADING(true));
+
+      setTimeout(async () => {
+        const response = await fetch(AUTH_URL);
+        const userData: IUser[] = await response.json();
+        const user = userData.find(item => item.username === login && item.password === password)
+        if (user) {
+          localStorage.setItem('auth', 'true');
+          localStorage.setItem('username', user.username);
+          dispatch(authSlice.actions.SET_USER(user));
+          dispatch(authSlice.actions.SET_AUTH(true));
+          dispatch(authSlice.actions.SET_IS_LOADING(false));
+        } else {
+          dispatch(authSlice.actions.SET_ERROR('Неверный логин или пароль'));
+          dispatch(authSlice.actions.SET_IS_LOADING(false));
+        }
+      }, 500);
+
+    } catch (e: unknown) {
+      dispatch(authSlice.actions.SET_ERROR('Произошла ошибка при логине'));
+      dispatch(authSlice.actions.SET_IS_LOADING(false));
+    }
+  }
+);
+
+
+

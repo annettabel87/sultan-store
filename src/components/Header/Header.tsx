@@ -3,7 +3,8 @@ import { NavLink } from "react-router-dom";
 import { ButtonBig } from "../UI/ButtonBig";
 import { Input } from "../UI/Input";
 import { ROUTE } from "../../common/helpers";
-import { useAppSelector } from "../../hooks/hooks";
+import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
+import { authSlice } from "../../Redux/authReducer";
 import style from "./Header.module.scss";
 import logo from "../../assets/icon/logo.svg";
 import search from "../../assets/icon/search.svg";
@@ -17,7 +18,14 @@ import basket from "../../assets/icon/basket.svg";
 
 export const Header: FC = () => {
   const {totalPrice, countItems} = useAppSelector(state => state.basketReducer)
-  const isAuth = true;
+  const isAuth = useAppSelector(state=> state.authReducer.isAuth);
+  const dispatch = useAppDispatch();
+  const {LOGOUT} = authSlice.actions;
+
+  const logoutHandler =  () => {
+    dispatch(LOGOUT());
+  }
+
   return (
     <header className={style.header}>
       <div className={style.head}>
@@ -77,9 +85,9 @@ export const Header: FC = () => {
             <div className={style.authBlock}>
             {
               isAuth ?
-                <button className={style.authBtn}>Выйти</button>
+                <button onClick={logoutHandler} className={style.authBtn}>Выйти</button>
               :
-              <button className={style.authBtn}>Войти</button>
+              <NavLink to={ROUTE.LOGIN} className={style.authBtn}>Войти</NavLink>
              }
             <div className={style.basketBlock}>
               <span className={style.count}>{countItems}</span>

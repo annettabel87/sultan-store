@@ -4,13 +4,14 @@ import { AdminPage } from "../pages/AdminPage";
 import { BasketPage } from "../pages/BasketPage";
 import { CardPage } from "../pages/CardPage";
 import { CatalogPage } from "../pages/CatalogPage";
-import { LoginPage } from "../pages/LoginPage copy";
+import { LoginPage } from "../pages/LoginPage";
 import { FC } from "react";
 
 export const DATA_URL = "/data.json";
+export const AUTH_URL = "/admins.json";
 export enum ROUTE {
   ADMIN = "/admin",
-  LOGIN = ".login",
+  LOGIN = "/login",
   CATALOG = "/catalog/",
   CARD = "/catalog/card/:cardId",
   BASKET = "/basket/",
