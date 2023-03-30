@@ -1,13 +1,37 @@
 import { IBasketItem } from "../Redux/basketReducer";
 import { IProduct } from "../Redux/catalogReducer";
+import { AdminPage } from "../pages/AdminPage";
+import { BasketPage } from "../pages/BasketPage";
+import { CardPage } from "../pages/CardPage";
+import { CatalogPage } from "../pages/CatalogPage";
+import { LoginPage } from "../pages/LoginPage copy";
+import { FC } from "react";
 
 export const DATA_URL = "/data.json";
 export enum ROUTE {
+  ADMIN = "/admin",
+  LOGIN = ".login",
   CATALOG = "/catalog/",
   CARD = "/catalog/card/:cardId",
   BASKET = "/basket/",
   ALL = "*",
 }
+
+export interface IRoute {
+  path: string;
+  element: FC;
+}
+
+export const publicRoutes: IRoute[] = [
+  {path: ROUTE.LOGIN, element: LoginPage},
+  {path: ROUTE.CATALOG, element: CatalogPage},
+  {path: ROUTE.CARD, element: CardPage},
+  {path: ROUTE.BASKET, element: BasketPage},
+]
+
+export const privateRoutes: IRoute[] = [
+  {path: ROUTE.ADMIN, element: AdminPage}
+]
 
 export enum FILTERSNAME {
   BODY = "body",
@@ -22,6 +46,7 @@ export enum FILTERSNAME {
   ORAL = "oral",
   PAPER = "paper",
 }
+
 export const FILTERS = [
   {
     name: FILTERSNAME.BODY,

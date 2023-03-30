@@ -8,6 +8,8 @@ import { CardPage } from "./pages/CardPage";
 import { CatalogPage } from "./pages/CatalogPage";
 import Breadcrumbs from "./components/Breadcrumbs/Breadcrumbs";
 import style from "./App.module.scss";
+import { AdminPage } from "./pages/AdminPage";
+import { AppRouter } from "./components/AppRouter";
 
 function App() {
   return (
@@ -17,15 +19,7 @@ function App() {
         <div className={style.container}>
           <Breadcrumbs />
           <Suspense fallback={<Preloader />}>
-            <Routes>
-              <Route path={ROUTE.CATALOG} element={<CatalogPage />} />
-              <Route path={ROUTE.CARD} element={<CardPage />} />
-              <Route path={ROUTE.BASKET} element={<BasketPage />} />
-              <Route
-                path={ROUTE.ALL}
-                element={<Navigate to={ROUTE.CATALOG} />}
-              />
-            </Routes>
+            <AppRouter/>
           </Suspense>
         </div>
       </main>
