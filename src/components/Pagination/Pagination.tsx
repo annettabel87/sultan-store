@@ -27,8 +27,8 @@ export const Pagination: FC<IPaginationProps> = ({ currentPage, countPerPage, to
 	}
 
 	const mappedPages = Pages.map(page => {
-		return (page === currentPage) ? <div className={`${style.paginationItem} ${style.active}`}>{page}</div> :
-			<div className={style.paginationItem} onClick={() => setPageHandler(page)}>{page}</div>
+		return (page === currentPage) ? <div key={page} className={`${style.paginationItem} ${style.active}`}>{page}</div> :
+			<div key={page} className={style.paginationItem} onClick={() => setPageHandler(page)}>{page}</div>
 	})
 	return (
 		<div className={style.pagination}>

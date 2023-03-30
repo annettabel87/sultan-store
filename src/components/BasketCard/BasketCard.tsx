@@ -1,9 +1,9 @@
 import { FC, useEffect, useState } from "react";
-import { IBasketItem, ADD_ITEM, REMOVE_ITEM } from "../../Redux/basketReducer";
+import { IBasketItem, REMOVE_ITEM, ADD_ONE_ITEM } from "../../Redux/basketReducer";
 import { useAppDispatch } from "../../hooks/hooks";
 import weight from "../../assets/icon/weight.svg";
 import volume from "../../assets/icon/volume.svg";
-import basketBtn from "../../assets/icon/basketBtn.svg";
+import basketBtn from "../../assets/icon/clearBasket.svg";
 import style from "./BasketCard.module.scss";
 
 export interface IBasketCardProps {
@@ -18,7 +18,7 @@ export const BasketCard: FC<IBasketCardProps> = ({ item }) => {
 
     const decrementCountProduct = () => {
         if (countProduct > 0) {
-            setCountProduct(count => count - 1)
+            setCountProduct(count => count - 1);
         }
     }
 
@@ -37,7 +37,8 @@ export const BasketCard: FC<IBasketCardProps> = ({ item }) => {
             price,
             quantity: countProduct
         }
-        dispatch(ADD_ITEM(item))
+
+        dispatch(ADD_ONE_ITEM(item))
     }, [countProduct])
 
     const removeItem = () => {
@@ -47,22 +48,29 @@ export const BasketCard: FC<IBasketCardProps> = ({ item }) => {
 
     return (
         <div className={style.card}>
-            <img className={style.img} src={urlImg} alt="product" />
-            <div className={style.description}>
-                <p className={style.volumeBlock}>
-                    <img src={sizeType === "weight" ? weight : volume} alt="icon" />
-                    <span className={style.smallText}>{size}</span>
-                </p>
-                <h2 className={style.title}>{title}</h2>
+            <div className={style.aboutBlock}>
+                <img className={style.img} src={urlImg} alt="product" />
+                <div className={style.description}>
+                    <p className={style.volumeBlock}>
+                        <img src={sizeType === "weight" ? weight : volume} alt="icon" />
+                        <span className={style.smallText}>{size}</span>
+                    </p>
+                    <div className={style.aboutText}>
+                        <h2 className={style.title}>{title}</h2>
+                        <p className={style.smallText}>{description}</p>
+                    </div>
+                </div>
             </div>
             <div className={style.buyBlock}>
+                <div className={style.separator}></div>
                 <div className={style.amountBlock}>
                     <button className={style.amountBtn} onClick={decrementCountProduct}>-</button>
                     <span className={style.amount}>{countProduct}</span>
                     <button className={style.amountBtn} onClick={incrementCountProduct}>+</button>
                 </div>
+                <div className={style.separator}></div>
                 <p className={style.price}>{price}₸</p>
-                <button onClick={removeItem}><img src={basketBtn} alt="delete" /></button>
+                <button className={style.removeBtn} onClick={removeItem}><img src={basketBtn} alt="delete" /></button>
             </div>
         </div>
     )
