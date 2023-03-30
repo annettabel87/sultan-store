@@ -70,8 +70,8 @@ export const catalogSlice = createSlice({
   name: "catalog",
   initialState,
   reducers: {
-    PRODUCTS_FETCHING(state) {
-      state.isLoading = true;
+    PRODUCTS_FETCHING(state, action: PayloadAction<boolean>) {
+      state.isLoading = action.payload;
     },
     SET_PRODUCTS(state, action: PayloadAction<IProduct[]>) {
       state.isLoading = false;

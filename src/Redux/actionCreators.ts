@@ -22,13 +22,28 @@ export const fetchProducts = createAsyncThunk(
   async ({ url, searchParam }: IFetchProps, { dispatch, getState }) => {
     try {
       const state = getState() as RootState;
-      dispatch(catalogSlice.actions.PRODUCTS_FETCHING());
-      const response = await fetch(url);
-      const data: IProduct[] = await response.json();
+      dispatch(catalogSlice.actions.PRODUCTS_FETCHING(true));
+
+
+      setTimeout(async() => {
+        const localStorageProducts = localStorage.getItem("products");
+        let  data: IProduct[];
+
+      if(localStorageProducts) {
+        data = JSON.parse(localStorageProducts) as IProduct[];
+      } else {
+        const response = await fetch(url);
+        data = await response.json();
+        localStorage.setItem("products", JSON.stringify(data));
+      }
+
+      dispatch(catalogSlice.actions.PRODUCTS_FETCHING(false));
+
       console.log(data);
       const manufacturer = [
         ...new Set(data.map((product) => product.manufacturer)),
       ];
+
       const filterByGroup = state.catalogReducer.filterByGroup;
 
       dispatch(catalogSlice.actions.SET_ALL_MANUFACTURER(manufacturer));
@@ -39,8 +54,6 @@ export const fetchProducts = createAsyncThunk(
 
       const maxParam = state.catalogReducer.maxPrice < max ? state.catalogReducer.maxPrice : max;
       const minParam = state.catalogReducer.minPrice > min ? state.catalogReducer.minPrice : min;
-
-      setTimeout(() => {
         const filteredArray = state.catalogReducer.filteredManufactures.length
           ? filterData(
             data,
@@ -74,13 +87,14 @@ export const fetchFullProduct = createAsyncThunk(
   "card/fetch",
   async ({ id }: IFetchCardProps, { dispatch, getState }) => {
     try {
-      dispatch(catalogSlice.actions.PRODUCTS_FETCHING());
+      dispatch(catalogSlice.actions.PRODUCTS_FETCHING(true));
       const response = await fetch(DATA_URL);
       const data: IProduct[] = await response.json();
       const product = data.filter(product => product.id === id)[0]
 
       setTimeout(() => {
         dispatch(catalogSlice.actions.SELECT_CARD(product));
+        dispatch(catalogSlice.actions.PRODUCTS_FETCHING(false));
       }, 500);
     } catch (e: unknown) {
       dispatch(catalogSlice.actions.PRODUCTS_FETCHING_ERROR("not found"));
