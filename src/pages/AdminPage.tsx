@@ -1,10 +1,11 @@
 import { FC, useState } from "react";
-import clearBasket from "../assets/icon/clearBasket.svg"
-import style from "./AdminPage.module.scss";
 import { useAppDispatch } from "../hooks/hooks";
 import { catalogSlice } from "../Redux/catalogReducer";
-import Modal from "../components/Modal/Modal";
 import { CreateProductBlock } from "../components/CreateProductBlock/CreateProductBlock";
+import { ProductsBlock } from "../components/ProductsBlock/ProductsBlock";
+import Modal from "../components/Modal/Modal";
+import clearBasket from "../assets/icon/clearBasket.svg"
+import style from "./AdminPage.module.scss";
 
 export const AdminPage: FC = () => {
     const dispatch = useAppDispatch();
@@ -26,6 +27,7 @@ export const AdminPage: FC = () => {
             <button className={style.clearBtn} onClick={() => setIsOpen(true)}>
                 +
             </button>
+            <ProductsBlock/>
             <Modal  open={isOpen} onClose={addProduct}>
                 <CreateProductBlock onClose={addProduct}/>
             </Modal>
