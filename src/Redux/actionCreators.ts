@@ -25,35 +25,33 @@ export const fetchProducts = createAsyncThunk(
       dispatch(catalogSlice.actions.PRODUCTS_FETCHING(true));
 
 
-      setTimeout(async() => {
+      setTimeout(async () => {
         const localStorageProducts = localStorage.getItem(LOCAL_STORAGE_KEYS.PRODUCTS);
-        let  data: IProduct[];
+        let data: IProduct[];
 
-      if(localStorageProducts) {
-        data = JSON.parse(localStorageProducts) as IProduct[];
-      } else {
-        const response = await fetch(url);
-        data = await response.json();
-        
-      }
+        if (localStorageProducts) {
+          data = JSON.parse(localStorageProducts) as IProduct[];
+        } else {
+          const response = await fetch(url);
+          data = await response.json();
+        }
 
-      dispatch(catalogSlice.actions.PRODUCTS_FETCHING(false));
+        dispatch(catalogSlice.actions.PRODUCTS_FETCHING(false));
 
-      console.log(data);
-      const manufacturer = [
-        ...new Set(data.map((product) => product.manufacturer)),
-      ];
+        const manufacturer = [
+          ...new Set(data.map((product) => product.manufacturer)),
+        ];
 
-      const filterByGroup = state.catalogReducer.filterByGroup;
+        const filterByGroup = state.catalogReducer.filterByGroup;
 
-      dispatch(catalogSlice.actions.SET_ALL_MANUFACTURER(manufacturer));
+        dispatch(catalogSlice.actions.SET_ALL_MANUFACTURER(manufacturer));
 
-      const { min, max } = getMinMaxFromArray(data);
+        const { min, max } = getMinMaxFromArray(data);
 
-      dispatch(catalogSlice.actions.SET_MIN_MAX_PRICE_FROM_DATA({ min, max }));
+        dispatch(catalogSlice.actions.SET_MIN_MAX_PRICE_FROM_DATA({ min, max }));
 
-      const maxParam = state.catalogReducer.maxPrice < max ? state.catalogReducer.maxPrice : max;
-      const minParam = state.catalogReducer.minPrice > min ? state.catalogReducer.minPrice : min;
+        const maxParam = state.catalogReducer.maxPrice < max ? state.catalogReducer.maxPrice : max;
+        const minParam = state.catalogReducer.minPrice > min ? state.catalogReducer.minPrice : min;
         const filteredArray = state.catalogReducer.filteredManufactures.length
           ? filterData(
             data,
@@ -63,18 +61,14 @@ export const fetchProducts = createAsyncThunk(
             filterByGroup
           )
           : filterData(data, minParam, maxParam, manufacturer, filterByGroup);
-              console.log(filteredArray);
-              
 
         const start = state.catalogReducer.currentPage * state.catalogReducer.countPerPage - state.catalogReducer.countPerPage;
         const end = start + state.catalogReducer.countPerPage;
-        console.log(start, end);
+
         dispatch(catalogSlice.actions.SET_TOTAL_COUNT(filteredArray.length));
         const sortedArray = sort(filteredArray, state.catalogReducer.sortValue);
-        console.log(sortedArray);
-        
         dispatch(catalogSlice.actions.SET_PRODUCTS(sortedArray.slice(start, end)));
-            
+
       }, 500);
     } catch (e: unknown) {
       dispatch(catalogSlice.actions.PRODUCTS_FETCHING_ERROR("not found"));

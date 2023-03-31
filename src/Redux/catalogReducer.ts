@@ -138,7 +138,12 @@ export const catalogSlice = createSlice({
     DELETE_PRODUCT(state, action: PayloadAction<number>) {
       state.products = state.products.filter(product => product.id !== action.payload);
       localStorage.setItem(LOCAL_STORAGE_KEYS.PRODUCTS, JSON.stringify(state.products));
-    }
+    },
+    UPDATE_PRODUCT(state, action: PayloadAction<IProduct>)  {
+      const index = state.products.findIndex(product => product.id === action.payload.id);
+      state.products[index] = action.payload;
+      localStorage.setItem(LOCAL_STORAGE_KEYS.PRODUCTS, JSON.stringify(state.products));
+    },
   },
   extraReducers: {},
 });
@@ -158,6 +163,7 @@ export const {
   SELECT_CARD,
   CLEAR_STATE,
   DELETE_PRODUCT,
-  ADD_NEW_PRODUCT
+  ADD_NEW_PRODUCT,
+  UPDATE_PRODUCT
 } = catalogSlice.actions;
 export default catalogSlice.reducer;

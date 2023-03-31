@@ -1,27 +1,27 @@
 import { FC, useState } from "react";
 import { FILTERS, FILTERSNAME } from "../../common/helpers";
-import { useAppDispatch } from "../../hooks/hooks";
-import { IProduct, catalogSlice } from "../../Redux/catalogReducer";
+import { IProduct } from "../../Redux/catalogReducer";
 import style from "./CreateProductBlock.module.scss";
 import close from "../../assets/icon/close.svg";
 
 export interface ICreateBlockProps {
   onClose: () => void;
+  btnText: string,
+  handler: (product: IProduct) => void,
+  data?: IProduct
 }
-export const CreateProductBlock: FC<ICreateBlockProps> = ({ onClose }) => {
-  const [title, setTitle] = useState<string>("");
-  const [urlImg, setUrlImg] = useState<string>("");
-  const [description, setDescription] = useState<string>("");
-  const [sizeType, setSizeType] = useState<string>("");
-  const [size, setSize] = useState<string>("");
-  const [barcode, setBarcode] = useState<number>(0);
-  const [manufacturer, setManufacturer] = useState<string>("");
-  const [brand, setBrand] = useState<string>("");
-  const [price, setPrice] = useState<number>();
-  const [group, setGroup] = useState<FILTERSNAME[]>();
-
-  const dispatch = useAppDispatch();
-  const { ADD_NEW_PRODUCT } = catalogSlice.actions;
+export const CreateProductBlock: FC<ICreateBlockProps> = ({ onClose, btnText, handler, data }) => {
+  
+  const [title, setTitle] = useState<string>(data?.title ?? "");
+  const [urlImg, setUrlImg] = useState<string>(data?.urlImg  ?? "");
+  const [description, setDescription] = useState<string>(data?.description ?? "");
+  const [sizeType, setSizeType] = useState<string>(data?.sizeType ?? "");
+  const [size, setSize] = useState<string>(data?.size ??  "");
+  const [barcode, setBarcode] = useState<number>(data?.barcode  ?? 0);
+  const [manufacturer, setManufacturer] = useState<string>(data?.manufacturer ?? "");
+  const [brand, setBrand] = useState<string>(data?.brand ?? "");
+  const [price, setPrice] = useState<number>(data?.price ?? 0);
+  const [group, setGroup] = useState<FILTERSNAME[]>(data?.groups ?? []);
 
   const handleChangeSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const options = e.target.options;
@@ -46,10 +46,10 @@ export const CreateProductBlock: FC<ICreateBlockProps> = ({ onClose }) => {
     setGroup([]);
   }
 
-  const submitAuthData = (e: React.FormEvent<HTMLFormElement>) => {
+  const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const newProduct = {
-      id: Date.now(),
+      id: data?.id ?? Date.now(),
       title,
       urlImg,
       description,
@@ -61,7 +61,9 @@ export const CreateProductBlock: FC<ICreateBlockProps> = ({ onClose }) => {
       price,
       group
     } as unknown as IProduct;
-    dispatch(ADD_NEW_PRODUCT(newProduct));
+    console.log(newProduct);
+    
+    handler(newProduct);
     clearForm();
   }
 
@@ -81,7 +83,7 @@ export const CreateProductBlock: FC<ICreateBlockProps> = ({ onClose }) => {
         </button>
         <div className={style.loginBlock}>
 
-          <form className={style.form} onSubmit={e => submitAuthData(e)}>
+          <form className={style.form} onSubmit={e => submitHandler(e)}>
             <label className={style.label}>
               Название:
               <input className={style.input}
@@ -186,7 +188,7 @@ export const CreateProductBlock: FC<ICreateBlockProps> = ({ onClose }) => {
                 {options}
               </select>
             </label>
-            <button className={style.btn} type="submit">Добавить</button>
+            <button className={style.btn} type="submit">{btnText}</button>
           </form>
         </div>
       </div>
