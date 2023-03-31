@@ -18,7 +18,7 @@ import basket from "../../assets/icon/basket.svg";
 
 export const Header: FC = () => {
   const {totalPrice, countItems} = useAppSelector(state => state.basketReducer)
-  const isAuth = useAppSelector(state=> state.authReducer.isAuth);
+  const {isAuth} = useAppSelector(state=> state.authReducer);
   const dispatch = useAppDispatch();
   const {LOGOUT} = authSlice.actions;
 
@@ -84,8 +84,10 @@ export const Header: FC = () => {
 
             <div className={style.authBlock}>
             {
-              isAuth ?
-                <button onClick={logoutHandler} className={style.authBtn}>Выйти</button>
+              isAuth ? <>
+              <button onClick={logoutHandler} className={style.authBtn}>Выйти</button>
+              <NavLink to={ROUTE.ADMIN} className={style.authBtn}>Кабинет</NavLink>
+              </>
               :
               <NavLink to={ROUTE.LOGIN} className={style.authBtn}>Войти</NavLink>
              }

@@ -14,15 +14,16 @@ function App() {
   const {SET_AUTH, SET_USER} = authSlice.actions;
 
   useEffect(() => {
+    dispatch(fetchProducts({ url: DATA_URL }));
+  }, []);
+
+  useEffect(() => {
     if(localStorage.getItem(LOCAL_STORAGE_KEYS.AUTH)) {
       dispatch(SET_USER({username: localStorage.getItem(LOCAL_STORAGE_KEYS.AUTH || "") }as IUser));
       dispatch(SET_AUTH(true));
     }
   }, [])
 
-  useEffect(() => {
-    dispatch(fetchProducts({ url: DATA_URL }));
-  }, []);
 
   return (
     <div className={style.App}>

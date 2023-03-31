@@ -6,7 +6,7 @@ import { fetchProducts } from "../../Redux/actionCreators";
 import { DATA_URL } from "../../common/helpers";
 import style from "./CardsBlock.module.scss";
 import { Card } from "../Card/Card";
-import { Link } from "react-router-dom";
+
 
 export const CardsBlock: FC = () => {
   const { products, currentPage, totalCount, countPerPage } = useAppSelector(store => store.catalogReducer);

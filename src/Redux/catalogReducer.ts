@@ -38,7 +38,7 @@ export const initialState: ICatalogState = {
   filterByGroup: "",
   sortValue: "",
   minPrice: 0,
-  maxPrice: 0,
+  maxPrice: 10000,
   products: [],
   allManufactures: [],
   isLoading: false,
@@ -130,6 +130,10 @@ export const catalogSlice = createSlice({
     CLEAR_STATE(state) {
       localStorage.removeItem(LOCAL_STORAGE_KEYS.PRODUCTS);
       state.products = [];
+    },
+    ADD_NEW_PRODUCT(state, action: PayloadAction<IProduct>)  {
+      state.products.push(action.payload);
+      localStorage.setItem(LOCAL_STORAGE_KEYS.PRODUCTS, JSON.stringify(state.products));
     }
   },
   extraReducers: {},

@@ -34,7 +34,7 @@ export const fetchProducts = createAsyncThunk(
       } else {
         const response = await fetch(url);
         data = await response.json();
-        localStorage.setItem(LOCAL_STORAGE_KEYS.PRODUCTS, JSON.stringify(data));
+        
       }
 
       dispatch(catalogSlice.actions.PRODUCTS_FETCHING(false));
@@ -63,15 +63,18 @@ export const fetchProducts = createAsyncThunk(
             filterByGroup
           )
           : filterData(data, minParam, maxParam, manufacturer, filterByGroup);
-
+              console.log(filteredArray);
+              
 
         const start = state.catalogReducer.currentPage * state.catalogReducer.countPerPage - state.catalogReducer.countPerPage;
         const end = start + state.catalogReducer.countPerPage;
         console.log(start, end);
         dispatch(catalogSlice.actions.SET_TOTAL_COUNT(filteredArray.length));
         const sortedArray = sort(filteredArray, state.catalogReducer.sortValue);
+        console.log(sortedArray);
+        
         dispatch(catalogSlice.actions.SET_PRODUCTS(sortedArray.slice(start, end)));
-
+            
       }, 500);
     } catch (e: unknown) {
       dispatch(catalogSlice.actions.PRODUCTS_FETCHING_ERROR("not found"));
