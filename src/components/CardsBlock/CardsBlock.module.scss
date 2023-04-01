@@ -1,4 +1,4 @@
-
+@import '../../variables.scss';
 
 .cardBlock {
     padding-top: 30px;
@@ -10,6 +10,12 @@
     flex-wrap: wrap;
     gap: 21px;
     margin-bottom: 56px;
+
+    @media screen and (max-width: 800px) {
+        &{
+            justify-content: center;
+        }
+    }
 }
 
 .text {

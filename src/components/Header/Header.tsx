@@ -91,6 +91,7 @@ export const Header: FC = () => {
               :
               <NavLink to={ROUTE.LOGIN} className={style.authBtn}>Войти</NavLink>
              }
+             </div>
             <div className={style.basketBlock}>
               <span className={style.count}>{countItems}</span>
               <NavLink to={ROUTE.BASKET} className={style.basketBtn}>
@@ -103,15 +104,14 @@ export const Header: FC = () => {
                 </p>
               </div>
             </div>
-            </div>
           </div>
         </div>
       </div>
       <div className={style.mobileBlock}>
-        <button className={style.mobileBtn}>
+      <NavLink to={ROUTE.CATALOG} className={style.mobileBtn}>
           <img src={catalogIconMb} alt="catalog" />
           <span className={style.mobileText}>Каталог</span>
-        </button>
+      </NavLink>
         <button className={style.mobileBtn}>
           <img src={searchMb} alt="search" />
           <span className={style.mobileText}>Поиск</span>

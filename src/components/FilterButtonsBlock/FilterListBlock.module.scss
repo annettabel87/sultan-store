@@ -5,6 +5,12 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 11px;
+
+    @media screen and (max-width: 600px) {
+        & {
+            gap: 2px;
+        }
+    }
 }
 
 .button {

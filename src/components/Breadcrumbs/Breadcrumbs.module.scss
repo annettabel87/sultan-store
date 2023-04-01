@@ -3,6 +3,10 @@
 .breadcrumbs {
     text-align: left;
     margin-bottom: 50px;
+
+    @media screen and (max-width: 500px) {
+        margin-bottom: 13px;
+    }
 }
 
 .crumb {

@@ -4,6 +4,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    @media screen and (max-width: 900px) {
+        flex-direction: column;
+    }
 }
 
 .catalogTitle {
@@ -15,9 +19,25 @@
     color: $boldText;
     letter-spacing: 1px;
     margin-bottom: 25px;
+
+    @media screen and (max-width: 900px) {
+        text-align: center;
+        font-weight: 500;
+    }
+
+    @media screen and (max-width: 500px) {
+        font-size: 20px;
+        margin-bottom: 6px;
+    }
+
 }
 
 .contentBlock {
     display: flex;
     gap: 93px;
+
+    @media screen and (max-width: 800px) {
+        flex-direction: column;
+        align-items: center;
+    }
 }

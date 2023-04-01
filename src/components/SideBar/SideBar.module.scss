@@ -6,6 +6,12 @@
     align-items: flex-start;
     justify-content: flex-start;
     padding-top: 51px;
+
+    @media screen and (max-width: 700px) {
+        & {
+            padding-top: 16px;
+        }
+    }
 }
 
 .title {
@@ -52,7 +58,6 @@
         content: url('../../assets/icon/showMore.svg');
         margin-left: 5px;
     }
-
 }
 
 .brandBlock {

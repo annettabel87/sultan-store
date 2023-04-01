@@ -13,5 +13,8 @@
     &:hover {
         background-color: darken($color: $secondaryColor, $amount: 15%);
     }
-}
 
+    @media screen and (max-width: 700px) {
+        margin-left: 20px;
+    }
+}

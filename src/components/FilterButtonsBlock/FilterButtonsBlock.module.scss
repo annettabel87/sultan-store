@@ -3,6 +3,19 @@
 .filtersWrapp {
     display: flex;
     gap: 11px;
+
+    @media screen and (max-width: 1400px) {
+        & {
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+    }
+
+    @media screen and (max-width: 1050px) {
+        & {
+            display:  none;
+        }
+    }
 }
 
 .button {
