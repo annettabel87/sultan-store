@@ -1,9 +1,9 @@
 import { FC, useEffect, useState } from "react";
-import { DATA_URL, FILTERS, FILTERSNAME } from "../../common/helpers";
+import { DATA_URL, FILTERS, FILTERSNAME } from "../../common/constants";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { catalogSlice } from "../../Redux/catalogReducer";
-import style from "./FilterButtonsBlock.module.scss";
 import { fetchProducts } from "../../Redux/actionCreators";
+import style from "./FilterButtonsBlock.module.scss";
 
 export const FilterButtonsBlock: FC = () => {
   const [selectedFilter, setSelectedFilter] = useState<FILTERSNAME | "">("");

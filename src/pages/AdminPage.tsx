@@ -13,6 +13,7 @@ export const AdminPage: FC = () => {
     const { CLEAR_STATE, ADD_NEW_PRODUCT } = catalogSlice.actions;
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
+
     const clearStorage = () => {
         dispatch(CLEAR_STATE());
     }

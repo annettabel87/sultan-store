@@ -1,8 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { AUTH_URL, DATA_URL, LOCAL_STORAGE_KEYS, filterData, getMinMaxFromArray, sort } from "../common/helpers";
+import { filterData, getMinMaxFromArray, sort } from "../common/helpers";
 import { catalogSlice, IProduct } from "./catalogReducer";
 import { RootState } from "./store";
 import { IUser, authSlice } from "./authReducer";
+import { DATA_URL, AUTH_URL, LOCAL_STORAGE_KEYS } from "../common/constants";
 
 
 export interface ISearchParam {
@@ -23,7 +24,6 @@ export const fetchProducts = createAsyncThunk(
     try {
       const state = getState() as RootState;
       dispatch(catalogSlice.actions.PRODUCTS_FETCHING(true));
-
 
       setTimeout(async () => {
         const localStorageProducts = localStorage.getItem(LOCAL_STORAGE_KEYS.PRODUCTS);

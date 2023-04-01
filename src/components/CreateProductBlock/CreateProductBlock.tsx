@@ -1,5 +1,5 @@
 import { FC, useState } from "react";
-import { FILTERS, FILTERSNAME } from "../../common/helpers";
+import { FILTERS, FILTERSNAME } from "../../common/constants";
 import { IProduct } from "../../Redux/catalogReducer";
 import style from "./CreateProductBlock.module.scss";
 import close from "../../assets/icon/close.svg";
@@ -11,7 +11,7 @@ export interface ICreateBlockProps {
   data?: IProduct
 }
 export const CreateProductBlock: FC<ICreateBlockProps> = ({ onClose, btnText, handler, data }) => {
-  
+
   const [title, setTitle] = useState<string>(data?.title ?? "");
   const [urlImg, setUrlImg] = useState<string>(data?.urlImg  ?? "");
   const [description, setDescription] = useState<string>(data?.description ?? "");
@@ -33,6 +33,7 @@ export const CreateProductBlock: FC<ICreateBlockProps> = ({ onClose, btnText, ha
     }
     setGroup(selectedOptions)
   }
+
   const clearForm = () => {
     setTitle("");
     setUrlImg("");
@@ -61,8 +62,7 @@ export const CreateProductBlock: FC<ICreateBlockProps> = ({ onClose, btnText, ha
       price,
       group
     } as unknown as IProduct;
-    console.log(newProduct);
-    
+
     handler(newProduct);
     clearForm();
   }

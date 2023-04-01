@@ -1,10 +1,10 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useCallback, useEffect, useState } from "react";
 import { useAppDispatch } from "../../hooks/hooks";
-import { ADD_FILTERED_MANUFACTURER, REMOVE_FILTERED_MANUFACTURER } from "../../Redux/catalogReducer";
 import { Checkbox } from "../UI/Checkbox";
 import { Input } from "../UI/Input";
 import search from "../../assets/icon/search.svg";
 import style from "./SearchBlock.module.scss";
+import { catalogSlice } from "../../Redux/catalogReducer";
 
 export interface ISearchBlockProps {
   manufacturers: string[];
@@ -12,6 +12,7 @@ export interface ISearchBlockProps {
 
 export const SearchBlock: FC<ISearchBlockProps> = ({ manufacturers }) => {
   const dispatch = useAppDispatch();
+  const {ADD_FILTERED_MANUFACTURER, REMOVE_FILTERED_MANUFACTURER} =catalogSlice.actions;
 
   const [searchData, setSearchData] = useState("");
   const [showMore, setShowMore] = useState(false);
@@ -25,10 +26,11 @@ export const SearchBlock: FC<ISearchBlockProps> = ({ manufacturers }) => {
   }, [manufacturers, searchData, setSearchData]);
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>, name: string) => {
+    console.log(e.target.checked)
     if (e.target.checked) {
-      dispatch(ADD_FILTERED_MANUFACTURER(name.toLocaleLowerCase()))
+      dispatch(ADD_FILTERED_MANUFACTURER(name))
     } else {
-      dispatch(REMOVE_FILTERED_MANUFACTURER(name.toLocaleLowerCase()))
+      dispatch(REMOVE_FILTERED_MANUFACTURER(name))
     }
   }
 

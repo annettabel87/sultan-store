@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useMemo } from "react";
 import prev from "../../assets/icon/left.svg";
 import next from "../../assets/icon/right.svg";
 import style from "./Pagination.module.scss";
@@ -9,10 +9,11 @@ export interface IPaginationProps {
 	totalCountItems: number,
 	onSetPage: (value: number) => void
 }
+
 export const Pagination: FC<IPaginationProps> = ({ currentPage, countPerPage, totalCountItems, onSetPage }) => {
 
-	const countPages = Math.ceil(totalCountItems / countPerPage);
-	const Pages = Array(countPages < 5 ? countPages : 5).fill(0).map((a, i) => i + 1);
+	const countPages = useMemo(() =>Math.ceil(totalCountItems / countPerPage), [totalCountItems, countPerPage]);
+	const Pages = useMemo(() =>Array(countPages < 5 ? countPages : 5).fill(0).map((a, i) => i + 1), [countPages]);
 
 	const setPageHandler = (page: number) => {
 		onSetPage(page)
@@ -30,6 +31,7 @@ export const Pagination: FC<IPaginationProps> = ({ currentPage, countPerPage, to
 		return (page === currentPage) ? <div key={page} className={`${style.paginationItem} ${style.active}`}>{page}</div> :
 			<div key={page} className={style.paginationItem} onClick={() => setPageHandler(page)}>{page}</div>
 	})
+
 	return (
 		<div className={style.pagination}>
 			<button className={style.paginationBtn} onClick={setPrevPageHandler}><img src={prev} alt="prev" /></button>

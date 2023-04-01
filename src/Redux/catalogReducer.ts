@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { FILTERSNAME, LOCAL_STORAGE_KEYS, SORTNAMES } from "../common/helpers";
+import { FILTERSNAME, LOCAL_STORAGE_KEYS, SORTNAMES } from "../common/constants";
 
 export interface IProduct {
   id: number;
@@ -113,7 +113,7 @@ export const catalogSlice = createSlice({
       state.minmax_price_data = action.payload;
     },
     CLEAR_FILTERS(state) {
-      state.filteredManufactures = state.allManufactures;
+      state.filteredManufactures = [];
       state.minPrice = state.minmax_price_data.min;
       state.maxPrice = state.minmax_price_data.max;
       state.filterByGroup = ""

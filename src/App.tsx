@@ -6,7 +6,7 @@ import style from "./App.module.scss";
 import { AppRouter } from "./components/AppRouter";
 import  { IUser, authSlice } from "./Redux/authReducer";
 import { useAppDispatch } from "./hooks/hooks";
-import { DATA_URL, LOCAL_STORAGE_KEYS } from "./common/helpers";
+import { DATA_URL, LOCAL_STORAGE_KEYS } from "./common/constants";
 import { fetchProducts } from "./Redux/actionCreators";
 import { Footer } from "./components/Footer/Footer";
 

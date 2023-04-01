@@ -10,11 +10,11 @@ export const CardPage: FC = () => {
     const product = useAppSelector(state => state.catalogReducer.selectedCard)
 
     const { cardId } = useParams();
+
     useEffect(() => {
         if (cardId) {
             dispatch(fetchFullProduct({ id: +cardId }))
         }
-
     }, [])
 
     return (

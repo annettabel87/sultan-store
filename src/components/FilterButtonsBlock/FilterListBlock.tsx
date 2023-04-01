@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from "react";
-import { DATA_URL, FILTERS, FILTERSNAME } from "../../common/helpers";
+import { DATA_URL, FILTERS, FILTERSNAME } from "../../common/constants";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { catalogSlice } from "../../Redux/catalogReducer";
 import style from "./FilterListBlock.module.scss";

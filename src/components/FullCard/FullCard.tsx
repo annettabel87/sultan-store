@@ -7,10 +7,9 @@ import { IProduct } from "../../Redux/catalogReducer";
 import { ButtonSmall } from "../UI/ButtonSmall";
 import showBtn from "../../assets/icon/selectArrow.svg";
 import unshowBtn from "../../assets/icon/unshowBtn.svg";
-import style from "./FullCard.module.scss";
 import { IBasketItem, ADD_ITEM } from "../../Redux/basketReducer";
 import { useAppDispatch } from "../../hooks/hooks";
-
+import style from "./FullCard.module.scss";
 export interface IFullCardProps {
     product: IProduct
 }

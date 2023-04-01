@@ -1,12 +1,13 @@
 import { FC } from "react";
-import { SORTNAMES, SORTSVALUES } from "../../common/helpers";
+import { SORTNAMES, SORTSVALUES } from "../../common/constants";
 import style from "./SortBlock.module.scss";
 
 interface ISearchBlockProps {
   sortValue: "" | SORTNAMES,
-  stSortValue: (value: SORTNAMES) => void,
+  setSortValue: (value: SORTNAMES) => void,
 }
-export const SortBlock: FC<ISearchBlockProps> = ({ sortValue, stSortValue }) => {
+
+export const SortBlock: FC<ISearchBlockProps> = ({ sortValue, setSortValue }) => {
 
   return (
     <form className={style.form}>
@@ -16,7 +17,7 @@ export const SortBlock: FC<ISearchBlockProps> = ({ sortValue, stSortValue }) => 
         id="sort"
         className={style.select}
         value={sortValue}
-        onChange={(e) => stSortValue(e.target.value as SORTNAMES)}
+        onChange={(e) => setSortValue(e.target.value as SORTNAMES)}
       >
         {SORTSVALUES.map((sortName) => {
           return <option key={sortName.name} value={sortName.name}>{sortName.title}</option>;

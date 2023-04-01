@@ -2,7 +2,7 @@ import { FC } from "react";
 import { NavLink } from "react-router-dom";
 import { ButtonBig } from "../UI/ButtonBig";
 import { Input } from "../UI/Input";
-import { ROUTE } from "../../common/helpers";
+import { ROUTE } from "../../common/constants";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { authSlice } from "../../Redux/authReducer";
 import style from "./Header.module.scss";

@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { IProduct, catalogSlice } from "../../Redux/catalogReducer";
 import { Pagination } from "../Pagination/Pagination";
 import { fetchProducts } from "../../Redux/actionCreators";
-import { DATA_URL } from "../../common/helpers";
+import { DATA_URL } from "../../common/constants";
 import { CardForAdmin } from "../CardForAdmin/CardForAdmin";
 import style from "./ProductsBlock.module.scss";
 import { CreateProductBlock } from "../CreateProductBlock/CreateProductBlock";
@@ -37,6 +37,7 @@ export const ProductsBlock: FC = () => {
   }
 
   let cards;
+
   if (!isEdit) {
     cards = products.map(product => <CardForAdmin product={product} handler={getUpdateId} key={product.id} />)
   } else {

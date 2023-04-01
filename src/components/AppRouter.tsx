@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
-import { ROUTE, privateRoutes, publicRoutes } from "../common/helpers";
+import { ROUTE, privateRoutes, publicRoutes } from "../common/constants";
 import { useAppSelector } from "../hooks/hooks";
 
 export const AppRouter: FC = () => {

@@ -23,6 +23,7 @@ export const CardForAdmin: FC<ICardForAdminProps> = ({ product, handler }) => {
     }
 
     const groupElement = groups ? groups.map(item => <p key={item}>{item}</p>) : "";
+
     return (
         <div className={style.card}>
             <button className={style.close} onClick={deleteProduct}>

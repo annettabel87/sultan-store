@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { LOCAL_STORAGE_KEYS } from "../common/helpers";
+import { LOCAL_STORAGE_KEYS } from "../common/constants";
 
 export interface IUser {
   username: string;

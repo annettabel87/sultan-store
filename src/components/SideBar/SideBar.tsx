@@ -3,7 +3,7 @@ import { PriceFilter } from "../PriceFilter/PriceFilter";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { SearchBlock } from "../SearchBlock/SearchBlock";
 import { fetchProducts } from "../../Redux/actionCreators";
-import { DATA_URL } from "../../common/helpers";
+import { DATA_URL } from "../../common/constants";
 import { CLEAR_FILTERS } from "../../Redux/catalogReducer";
 import { FilterListBlock } from "../FilterButtonsBlock/FilterListBlock";
 import { ButtonBig } from "../UI/ButtonBig";

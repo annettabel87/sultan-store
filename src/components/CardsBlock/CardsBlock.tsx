@@ -3,10 +3,9 @@ import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { catalogSlice } from "../../Redux/catalogReducer";
 import { Pagination } from "../Pagination/Pagination";
 import { fetchProducts } from "../../Redux/actionCreators";
-import { DATA_URL } from "../../common/helpers";
-import style from "./CardsBlock.module.scss";
+import { DATA_URL } from "../../common/constants";
 import { Card } from "../Card/Card";
-
+import style from "./CardsBlock.module.scss";
 
 export const CardsBlock: FC = () => {
   const { products, currentPage, totalCount, countPerPage } = useAppSelector(store => store.catalogReducer);
