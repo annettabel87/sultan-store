@@ -1,0 +1,138 @@
+@import '../../variables.scss';
+
+.footer {
+    background-color: $mainText;
+    padding: 71px 20px 118px;
+    color: $mainBg;
+
+    @media screen and (max-width: 700px) {
+        padding: 16px
+    }
+
+    .container {
+        display: flex;
+        max-width: $contentWidth;
+        justify-content: center;
+        margin: 0 auto;
+        gap: 90px;
+        flex-wrap: wrap;
+
+        @media screen and (max-width: 700px) {
+            gap: 45px;
+        }
+    }
+
+    .title {
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 1.5;
+        margin-bottom: 25px;
+    }
+
+    .about {
+        max-width: 295px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+        flex-wrap: wrap;
+    }
+
+    .description {
+        line-height: 1.7;
+        margin-bottom: 44px;
+    }
+
+    .form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+
+        label {
+            font-size: 12px;
+        }
+    }
+
+    .logo {
+        margin-bottom: 15px;
+    }
+
+    .nav {
+        display: flex;
+        gap: 98px;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: start;
+        }
+    }
+
+    .contacts {
+        display: flex;
+        gap: 95px;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        .messengers {
+
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+            gap: 15px;
+            margin-top: 21px;
+        }
+
+        .messengersLink {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .linkWhatsApp {
+            background-color: #00E676;
+            border-radius: 50%;
+            padding: 9px;
+        }
+
+        .linkTelegram {
+            background-color: #40B3E0;
+            border-radius: 50%;
+            padding: 9px;
+        }
+    }
+
+    .phone {
+        display: flex;
+        flex-direction: column;
+        gap: 9px;
+        margin-bottom: 26px;
+    }
+
+    .mail {
+        margin-bottom: 27px;
+    }
+
+    .payBlock {
+        display: flex;
+        gap: 4px;
+        align-items: center;
+    }
+
+    .column {
+        text-align: left;
+    }
+
+    .textSmall {
+        font-size: 12px;
+    }
+
+    .smallestText {
+        font-size: 10px;
+        text-decoration: underline;
+        cursor: pointer;
+    }
+}

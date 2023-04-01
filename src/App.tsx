@@ -8,6 +8,7 @@ import  { IUser, authSlice } from "./Redux/authReducer";
 import { useAppDispatch } from "./hooks/hooks";
 import { DATA_URL, LOCAL_STORAGE_KEYS } from "./common/helpers";
 import { fetchProducts } from "./Redux/actionCreators";
+import { Footer } from "./components/Footer/Footer";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -36,6 +37,7 @@ function App() {
           </Suspense>
         </div>
       </main>
+      <Footer/>
     </div>
   );
 }
