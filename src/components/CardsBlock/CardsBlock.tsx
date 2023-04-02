@@ -6,12 +6,15 @@ import { fetchProducts } from "../../Redux/actionCreators";
 import { DATA_URL } from "../../common/constants";
 import { Card } from "../Card/Card";
 import style from "./CardsBlock.module.scss";
+import { countStartEndToPagination } from "../../common/helpers";
 
 export const CardsBlock: FC = () => {
   const { products, currentPage, totalCount, countPerPage } = useAppSelector(store => store.catalogReducer);
 
   const { SET_CURRENT_PAGE } = catalogSlice.actions;
   const dispatch = useAppDispatch();
+
+  const {start,end} = countStartEndToPagination(currentPage,countPerPage)
 
   const onSetPage = (page: number) => {
     dispatch(SET_CURRENT_PAGE(page))
@@ -24,7 +27,7 @@ export const CardsBlock: FC = () => {
   return (
     <div className={style.cardBlock}>
       <div className={style.block}>
-        {products.map(product => <Card {...product} key={product.id} /> )}
+        {products.slice(start, end).map(product => <Card {...product} key={product.id} /> )}
       </div>
       <Pagination currentPage={currentPage} countPerPage={countPerPage} totalCountItems={totalCount} onSetPage={onSetPage} />
       <p className={style.text}>

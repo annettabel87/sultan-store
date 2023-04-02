@@ -63,12 +63,9 @@ export const fetchProducts = createAsyncThunk(
           )
           : filterData(data, minParam, maxParam, manufacturer, filterByGroup);
 
-        const start = state.catalogReducer.currentPage * state.catalogReducer.countPerPage - state.catalogReducer.countPerPage;
-        const end = start + state.catalogReducer.countPerPage;
-
         dispatch(catalogSlice.actions.SET_TOTAL_COUNT(filteredArray.length));
         const sortedArray = sort(filteredArray, state.catalogReducer.sortValue);
-        dispatch(catalogSlice.actions.SET_PRODUCTS(sortedArray.slice(start, end)));
+        dispatch(catalogSlice.actions.SET_PRODUCTS(sortedArray));
 
       }, 500);
     } catch (e: unknown) {

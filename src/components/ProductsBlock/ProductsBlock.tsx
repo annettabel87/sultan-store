@@ -7,6 +7,7 @@ import { DATA_URL } from "../../common/constants";
 import { CardForAdmin } from "../CardForAdmin/CardForAdmin";
 import style from "./ProductsBlock.module.scss";
 import { CreateProductBlock } from "../CreateProductBlock/CreateProductBlock";
+import { countStartEndToPagination } from "../../common/helpers";
 
 
 export const ProductsBlock: FC = () => {
@@ -17,6 +18,8 @@ export const ProductsBlock: FC = () => {
 
   const { SET_CURRENT_PAGE, UPDATE_PRODUCT } = catalogSlice.actions;
   const dispatch = useAppDispatch();
+
+   const {start,end} = countStartEndToPagination(currentPage,countPerPage)
 
   const onSetPage = (page: number) => {
     dispatch(SET_CURRENT_PAGE(page))
@@ -39,7 +42,7 @@ export const ProductsBlock: FC = () => {
   let cards;
 
   if (!isEdit) {
-    cards = products.map(product => <CardForAdmin product={product} handler={getUpdateId} key={product.id} />)
+    cards = products.slice(start, end).map(product => <CardForAdmin product={product} handler={getUpdateId} key={product.id} />)
   } else {
     const data = products.filter(item => item.id === editId)[0];
     cards = <CreateProductBlock data={data} onClose={() => setIsEdit(false)} btnText={"Обновить"}

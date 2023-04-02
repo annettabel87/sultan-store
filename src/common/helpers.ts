@@ -57,3 +57,11 @@ export const calculateTotalPrice = (data: IBasketItem[]) => {
   const sum = data.reduce((sum, item)  =>  sum + (item.quantity * (item.price*100))/100, 0);
   return +sum.toFixed(2);
 }
+
+export const countStartEndToPagination = (currentPage: number, countPerPage: number) => {
+  const start = currentPage * countPerPage - countPerPage;
+  const end = start + countPerPage;
+  return {
+    start, end
+  }
+}
