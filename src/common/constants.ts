@@ -5,8 +5,8 @@ import { CardPage } from "../pages/CardPage";
 import { CatalogPage } from "../pages/CatalogPage";
 import { LoginPage } from "../pages/LoginPage";
 
-export const DATA_URL = "/data.json";
-export const AUTH_URL = "/admins.json";
+export const DATA_URL = "/sultan-store/data.json";
+export const AUTH_URL = "/sultan-store/admins.json";
 
 export enum ROUTE {
     ADMIN = "/admin",
