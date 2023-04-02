@@ -118,6 +118,7 @@ export const CreateProductBlock: FC<ICreateBlockProps> = ({ onClose, btnText, ha
                 required />
             </label>
             <label className={style.label}>
+              Размер:
               <select className={style.select}
                 value={sizeType}
                 onChange={(e) => setSizeType(e.currentTarget.value)}              >
