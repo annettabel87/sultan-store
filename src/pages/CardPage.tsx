@@ -1,13 +1,15 @@
-import { FC, useEffect } from "react"
-import { FullCard } from "../components/FullCard/FullCard"
-import { useParams } from "react-router-dom"
-import { useAppDispatch, useAppSelector } from "../hooks/hooks"
+import { FC, useEffect } from "react";
+import { FullCard } from "../components/FullCard/FullCard";
+import { useParams } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../hooks/hooks";
 import { fetchFullProduct } from "../Redux/actionCreators"
+import Preloader from "../common/Preloader/Preloader";
+import style from "./CardPage.module.scss";
 
 
 export const CardPage: FC = () => {
     const dispatch = useAppDispatch();
-    const product = useAppSelector(state => state.catalogReducer.selectedCard)
+    const {selectedCard, isLoading, error} = useAppSelector(state => state.catalogReducer)
 
     const { cardId } = useParams();
 
@@ -17,9 +19,20 @@ export const CardPage: FC = () => {
         }
     }, [])
 
+    if (isLoading) {
+        return (
+          <Preloader/>
+        )
+      }
+    
+    if(error) {
+      return (
+        <div className={style.error}>Загрузка...</div>
+      )
+    }
     return (
         <div>
-            <FullCard product={product}/>
+            <FullCard product={selectedCard}/>
         </div>
     )
 }

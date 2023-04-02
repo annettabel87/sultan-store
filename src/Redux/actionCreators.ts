@@ -37,8 +37,6 @@ export const fetchProducts = createAsyncThunk(
           localStorage.setItem(LOCAL_STORAGE_KEYS.PRODUCTS, JSON.stringify(data));
         }
 
-        dispatch(catalogSlice.actions.PRODUCTS_FETCHING(false));
-
         const manufacturer = [
           ...new Set(data.map((product) => product.manufacturer)),
         ];
@@ -66,10 +64,12 @@ export const fetchProducts = createAsyncThunk(
         dispatch(catalogSlice.actions.SET_TOTAL_COUNT(filteredArray.length));
         const sortedArray = sort(filteredArray, state.catalogReducer.sortValue);
         dispatch(catalogSlice.actions.SET_PRODUCTS(sortedArray));
+        dispatch(catalogSlice.actions.PRODUCTS_FETCHING(false));
 
       }, 500);
     } catch (e: unknown) {
       dispatch(catalogSlice.actions.PRODUCTS_FETCHING_ERROR("not found"));
+      dispatch(catalogSlice.actions.PRODUCTS_FETCHING(false));
     }
   }
 );

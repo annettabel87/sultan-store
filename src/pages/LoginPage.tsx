@@ -2,6 +2,7 @@ import { FC, FormEvent, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../hooks/hooks";
 import { fetchAuthData } from "../Redux/actionCreators";
 import style from "./LoginPage.module.scss";
+import Preloader from "../common/Preloader/Preloader";
 
 export const LoginPage: FC = () => {
     const [login, setLogin] = useState<string>('');
@@ -17,7 +18,7 @@ export const LoginPage: FC = () => {
 
     return (
         <div className={style.loginBlock}>
-            {isLoading ? <p>Загрузка...</p> :
+            {isLoading ? <Preloader /> :
                 <form className={style.loginForm} onSubmit={e => submitAuthData(e)}>
                     <label className={style.label}>
                         Имя:

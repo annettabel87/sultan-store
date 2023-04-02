@@ -12,7 +12,7 @@ import style from "./CatalogPage.module.scss";
 
 export const CatalogPage: FC = () => {
   const dispatch = useAppDispatch();
-  const sortValue = useAppSelector((state) => state.catalogReducer.sortValue);
+  const {sortValue} = useAppSelector((state) => state.catalogReducer);
   const { SET_SORTVALUE } = catalogSlice.actions;
 
   const setSortValue = useCallback((value: SORTNAMES) => {

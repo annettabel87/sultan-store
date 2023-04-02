@@ -32,6 +32,8 @@ export const publicRoutes: IRoute[] = [
 export const privateRoutes: IRoute[] = [
     { path: ROUTE.ADMIN, element: AdminPage },
     { path: ROUTE.CATALOG, element: CatalogPage },
+    { path: ROUTE.CARD, element: CardPage },
+    { path: ROUTE.BASKET, element: BasketPage },
 ]
 
 export enum LOCAL_STORAGE_KEYS {
