@@ -38,6 +38,7 @@ export enum LOCAL_STORAGE_KEYS {
     PRODUCTS = "products",
     USERNAME = "username",
     AUTH = "auth",
+    BASKET= 'basket'
 }
 
 export enum FILTERSNAME {

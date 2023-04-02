@@ -34,6 +34,7 @@ export const fetchProducts = createAsyncThunk(
         } else {
           const response = await fetch(url);
           data = await response.json();
+          localStorage.setItem(LOCAL_STORAGE_KEYS.PRODUCTS, JSON.stringify(data));
         }
 
         dispatch(catalogSlice.actions.PRODUCTS_FETCHING(false));
