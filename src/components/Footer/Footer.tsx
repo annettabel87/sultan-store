@@ -14,7 +14,7 @@ import style from "./Footer.module.scss";
 export const Footer: FC = () => {
 
     return (
-        <footer className={style.footer}>
+        <footer className={style.footer} data-testid="footer">
             <div className={style.container}>
                 <div className={style.about}>
                     <div className={style.logo}>
