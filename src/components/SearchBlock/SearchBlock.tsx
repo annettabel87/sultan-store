@@ -35,7 +35,7 @@ export const SearchBlock: FC<ISearchBlockProps> = ({ manufacturers }) => {
   }
 
   return (
-    <div className={style.block}>
+    <div className={style.block} data-testid="searchBlock">
       <label className={style.label}>Производитель</label>
       <Input placeholder={"Поиск..."}
         type={"text"} width={"238"}

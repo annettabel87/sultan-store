@@ -11,7 +11,7 @@ export interface ICheckboxProps {
 export const Checkbox: FC<ICheckboxProps> = ({ name, id, value, onChangeHandler }) => {
 
     return (
-        <div className={style.checkboxBlock}>
+        <div className={style.checkboxBlock} data-testid="checkbox">
             <input className={style.input}
                 type="checkbox"
                 name={name}
