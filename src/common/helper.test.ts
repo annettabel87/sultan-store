@@ -80,6 +80,6 @@ describe("sort test", () => {
     })
 
     test('sort by title price reverse', () => {
-        expect(sort(mockData, SORTNAMES.PRICE)[0].id).toBe(17)
+        expect(sort(mockData, SORTNAMES.PRICE_REVERSE)[0].id).toBe(17)
     })
 })
