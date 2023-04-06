@@ -21,7 +21,7 @@ export const CatalogPage: FC = () => {
     [SET_SORTVALUE, dispatch]
   )
  const onSetPage = (page: number) => {
-     dispatch(SET_CURRENT_PAGE(page))
+      dispatch(SET_CURRENT_PAGE(page))
    }
 
   useEffect(() => {
