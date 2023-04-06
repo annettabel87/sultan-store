@@ -17,7 +17,7 @@ export const LoginPage: FC = () => {
     }
 
     return (
-        <div className={style.loginBlock}>
+        <div className={style.loginBlock} data-testid="loginPage">
             {isLoading ? <Preloader /> :
                 <form className={style.loginForm} onSubmit={e => submitAuthData(e)}>
                     <label className={style.label}>

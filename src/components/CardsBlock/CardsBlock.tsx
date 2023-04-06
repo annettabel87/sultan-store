@@ -35,7 +35,7 @@ export const CardsBlock: FC<ICardBlockProps> = ({ products, currentPage, totalCo
       <div className={style.block}>
         {products.slice(start, end).map(product => <Card {...product} key={product.id} />)}
       </div>
-      <Pagination currentPage={currentPage} countPerPage={countPerPage} totalCountItems={totalCount} onSetPage={() => onSetPage} />
+      <Pagination currentPage={currentPage} countPerPage={countPerPage} totalCountItems={totalCount} onSetPage={onSetPage} />
       <p className={style.text}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam interdum ut justo, vestibulum sagittis iaculis iaculis. Quis mattis vulputate feugiat massa vestibulum duis. Faucibus consectetur aliquet sed pellentesque consequat consectetur congue mauris venenatis. Nunc elit, dignissim sed nulla ullamcorper enim, malesuada.
       </p>

@@ -23,7 +23,7 @@ export const AdminPage: FC = () => {
     }
 
     return (
-        <div className={style.adminBlock}>
+        <div className={style.adminBlock} data-testid="adminPage">
             <button className={style.clearBtn} onClick={clearStorage}>
                 <img src={clearBasket} alt="garbage basket" />
             </button>

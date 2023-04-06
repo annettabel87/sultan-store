@@ -29,7 +29,7 @@ export const CatalogPage: FC = () => {
   }, [sortValue, currentPage]);
 
   return (
-    <div className={style.catalogPage}>
+    <div className={style.catalogPage} data-testid="catalogPage">
       <div className={style.head}>
         <h1 className={style.catalogTitle}>Косметика и гигиена</h1>
         <SortBlock sortValue={sortValue} setSortValue={setSortValue} />

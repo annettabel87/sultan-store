@@ -45,7 +45,6 @@ export const authSlice = createSlice({
       state.isAuth = false;
     },
   },
-  extraReducers: {},
 });
 
 export const {

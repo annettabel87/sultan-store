@@ -7,7 +7,7 @@ import style from "./BasketPage.module.scss";
 export const BasketPage: FC = () => {
     const {basket, totalPrice} = useAppSelector(state => state.basketReducer)
     return (
-        <div>
+        <div data-testid="basketPage">
             <h1 className={style.title}>Корзина</h1>
             <div className={style.separator}></div>
             <Basket products={basket} totalPrice={totalPrice}/>

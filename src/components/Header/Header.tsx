@@ -27,7 +27,7 @@ export const Header: FC = () => {
   }
 
   return (
-    <header className={style.header}>
+    <header className={style.header} data-testid="header">
       <div className={style.head}>
         <div className={style.headWrapper}>
           <address className={style.addressBlock}>
@@ -61,7 +61,7 @@ export const Header: FC = () => {
             <NavLink to={ROUTE.CATALOG} className={style.logo}>
               <img src={logo} alt="logo" className={style.logoImg} />
             </NavLink>
-            <NavLink to={ROUTE.CATALOG}><ButtonBig text={"Каталог"} iconSrc={catalogIcon} /></NavLink>
+            <NavLink to={ROUTE.CATALOG}><ButtonBig text={"Каталог"} iconSrc={catalogIcon} testId={"catalog"} /></NavLink>
             <Input
               placeholder={"Поиск..."}
               type={"text"}
@@ -86,15 +86,15 @@ export const Header: FC = () => {
             {
               isAuth ? <>
               <button onClick={logoutHandler} className={style.authBtn}>Выйти</button>
-              <NavLink to={ROUTE.ADMIN} className={style.authBtn}>Кабинет</NavLink>
+              <NavLink to={ROUTE.ADMIN} className={style.authBtn} data-testid="adminBtn">Кабинет</NavLink>
               </>
               :
-              <NavLink to={ROUTE.LOGIN} className={style.authBtn}>Войти</NavLink>
+              <NavLink data-testid="loginBtn" to={ROUTE.LOGIN} className={style.authBtn}>Войти</NavLink>
              }
              </div>
             <div className={style.basketBlock}>
               <span className={style.count}>{countItems}</span>
-              <NavLink to={ROUTE.BASKET} className={style.basketBtn}>
+              <NavLink to={ROUTE.BASKET} className={style.basketBtn} data-testid="basketBtn">
                 <img src={basket} alt="basket" />
               </NavLink>
               <div className={style.basketText}>

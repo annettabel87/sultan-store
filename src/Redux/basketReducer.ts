@@ -58,7 +58,6 @@ export const basketSlice = createSlice({
       localStorage.removeItem(LOCAL_STORAGE_KEYS.BASKET);
     },
   },
-  extraReducers: {},
 });
 
 export const {

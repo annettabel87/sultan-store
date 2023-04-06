@@ -145,7 +145,6 @@ export const catalogSlice = createSlice({
       localStorage.setItem(LOCAL_STORAGE_KEYS.PRODUCTS, JSON.stringify(state.products));
     },
   },
-  extraReducers: {},
 });
 
 export const {

@@ -28,7 +28,7 @@ export const Card: FC<IProduct> = ({ id, urlImg, title, barcode, manufacturer, b
    }
 
     return (
-         <div className={style.card} data-id={id}>
+         <div className={style.card} data-id={id} data-testid="card">
             <Link to={`/catalog/card/${id}`}>
             <img src={urlImg} alt="product" className={style.img} />
             <div className={style.volume}>
