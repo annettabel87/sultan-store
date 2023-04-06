@@ -34,7 +34,7 @@ export const SideBar: FC = () => {
   return (
     <div className={style.sidebar}>
       <h3 className={style.title}>подбор по параметрам</h3>
-      <form className={style.form} onSubmit={filterHandler} onReset={clearSearchData} id="filter">
+      <form data-testid="form" className={style.form} onSubmit={filterHandler} onReset={clearSearchData} id="filter">
         <PriceFilter />
         <SearchBlock manufacturers={allManufactures} />
         <div className={style.btnBlock}>
