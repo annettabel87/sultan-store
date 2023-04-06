@@ -12,18 +12,21 @@ import style from "./CatalogPage.module.scss";
 
 export const CatalogPage: FC = () => {
   const dispatch = useAppDispatch();
-  const {sortValue} = useAppSelector((state) => state.catalogReducer);
-  const { SET_SORTVALUE } = catalogSlice.actions;
+  const {sortValue, products, currentPage, totalCount, countPerPage, isLoading, error} = useAppSelector((state) => state.catalogReducer);
+  const { SET_SORTVALUE, SET_CURRENT_PAGE } = catalogSlice.actions;
 
   const setSortValue = useCallback((value: SORTNAMES) => {
     dispatch(SET_SORTVALUE(value));
   },
     [SET_SORTVALUE, dispatch]
   )
+ const onSetPage = (page: number) => {
+     dispatch(SET_CURRENT_PAGE(page))
+   }
 
   useEffect(() => {
     dispatch(fetchProducts({ url: DATA_URL }));
-  }, [sortValue]);
+  }, [sortValue, currentPage]);
 
   return (
     <div className={style.catalogPage}>
@@ -34,7 +37,10 @@ export const CatalogPage: FC = () => {
       <FilterButtonsBlock />
       <div className={style.contentBlock}>
         <SideBar />
-        <CardsBlock />
+        <CardsBlock products={products} currentPage={currentPage}
+         totalCount={totalCount} countPerPage={countPerPage}
+         isLoading={isLoading} error={error}
+          onSetPage={onSetPage} />
       </div>
     </div>
   );
