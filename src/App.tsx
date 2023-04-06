@@ -27,7 +27,7 @@ function App() {
 
 
   return (
-    <div className={style.App}>
+    <div className={style.App} data-testid="App">
       <Header />
       <main className={style.main}>
         <div className={style.container}>
