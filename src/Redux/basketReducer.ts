@@ -13,7 +13,7 @@ export interface IBasketItem {
   quantity: number;
 }
 
-interface IBasketState {
+export interface IBasketState {
   basket: IBasketItem[],
   totalPrice: number,
   countItems: number
